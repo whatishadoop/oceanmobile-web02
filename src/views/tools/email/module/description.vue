@@ -20,7 +20,7 @@
  account.setPort("465");
  account.setAuth(true);
  account.setFrom("auaur@sina.com");
- account.setUser("eladmin");
+ account.setUser("oceanmobile");
  account.setPass("pass");
  # 倒数第二个参数：是否为http格式
  MailUtil.send(account, CollUtil.newArrayList("zhengjie@tom.com"), "测试", "邮件来自eladmin测试", true，file...);</pre>

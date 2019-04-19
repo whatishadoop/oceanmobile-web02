@@ -13,7 +13,7 @@ export default {
   /**
    * @description 此处修改网站名称
    */
-  webName: 'eladmin',
+  webName: 'oceanmobile',
   /**
    * @description token key
    */
