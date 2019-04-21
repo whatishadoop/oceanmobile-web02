@@ -36,6 +36,11 @@ export const constantRouterMap = [
     hidden: true
   },
   {
+    path: '/AppDesigner',
+    component: () => import('@/views/appdesigner/AppDesigner'),
+    hidden: true
+  },
+  {
     path: '/redirect',
     component: Layout,
     hidden: true,
