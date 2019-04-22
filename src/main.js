@@ -26,6 +26,8 @@ import echarts from 'echarts';
 import uuid from 'uuid-js';
 // 引入自定义组件(插件)
 import webAppPlugin from './views/appdesigner/components'
+// 引入国际化
+import i18n from './i18n';
 
 Vue.prototype.$uuid = uuid;
 Vue.prototype.$echarts = echarts;
@@ -40,5 +42,6 @@ new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   render: h => h(App)
 })

@@ -62,6 +62,7 @@ export default {
   width: 20px;
   height: 20px;
   vertical-align: 10px;
+  margin-top: 16px;
 }
 .my-blockquote{
   margin: 0px 0px 10px;

@@ -79,6 +79,7 @@ export default {
     height: 50px;
     line-height: 50px;
     border-radius: 0px !important;
+    margin-bottom: 0px;
     .hamburger-container {
       line-height: 58px;
       height: 50px;
@@ -115,13 +116,14 @@ export default {
         height: 50px;
         margin-right: 30px;
         .avatar-wrapper {
-          margin-top: 5px;
+          margin-top: 0px;
           position: relative;
           .user-avatar {
             cursor: pointer;
             width: 40px;
             height: 40px;
             border-radius: 10px;
+            margin-bottom: 30px;
           }
           .el-icon-caret-bottom {
             cursor: pointer;
