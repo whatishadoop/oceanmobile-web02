@@ -4,7 +4,7 @@
         <Row :gutter="32">
           <Col span="12">
           <FormItem label="Name" label-position="top">
-            <Input v-model="componentObj.cid" placeholder="please enter user name" />
+            <Input v-model="formData.name" placeholder="please enter user name" />
           </FormItem>
           </Col>
           <Col span="12">
@@ -51,8 +51,6 @@
         </Row>
         <FormItem label="Description" label-position="top">
           <Input type="textarea" v-model="formData.desc" :rows="4" placeholder="please enter the description" />
-          <Button @click="test()">测试语句</Button>
-          <Button @click="test2()">测试对象</Button>
         </FormItem>
       </Form>
       <div class="demo-drawer-footer">
@@ -95,7 +93,7 @@
     };
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style type="text/scss" rel="stylesheet/scss" lang="scss" scoped>
   .demo-drawer-footer{  /*弹出抽屉设置*/
     width: 100%;
     position: absolute;

@@ -94,7 +94,7 @@ export default {
   }
 </style>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
+<style lang="scss" type="text/scss" rel="stylesheet/scss" scoped>
   $color-blue: #2196F3;
   $space-width: 18px;
   .ms-tree-space {

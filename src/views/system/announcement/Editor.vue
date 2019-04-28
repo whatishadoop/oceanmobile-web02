@@ -3,7 +3,7 @@
     <div ref="editor" style="text-align:left;margin: 5px">
       <h3 style="text-align: center;">欢迎使用 wangEditor 富文本编辑器!</h3>
       <ul>
-        <li>富文本中图片上传使用的是sm.ms图床，支持上传到七牛云：<a style="color: #42b983" target="_blank" href="https://sm.ms/">sm.ms</a></li>
+        <li>富文本中图片上传使用的是sm.ms图床，支持上传到文件云：<a style="color: #42b983" target="_blank" href="https://sm.ms/">sm.ms</a></li>
         <li>更多帮助请查看官方文档：<a style="color: #42b983" target="_blank" href="https://www.kancloud.cn/wangfupeng/wangeditor3/332599">wangEditor</a></li>
       </ul>
     </div>
@@ -25,7 +25,7 @@ export default {
       editorContent:
         `<h3 style="text-align: center;">欢迎使用 wangEditor 富文本编辑器!</h3>
         <ul>
-          <li>富文本中图片上传使用的是sm.ms图床，支持上传到七牛云：<a style="color: #42b983" target="_blank" href="https://sm.ms/">sm.ms</a></li>
+          <li>富文本中图片上传使用的是sm.ms图床，支持上传到文件云：<a style="color: #42b983" target="_blank" href="https://sm.ms/">sm.ms</a></li>
           <li>更多帮助请查看官方文档：<a style="color: #42b983" target="_blank" href="https://www.kancloud.cn/wangfupeng/wangeditor3/332599">wangEditor</a></li>
         </ul>`
     }

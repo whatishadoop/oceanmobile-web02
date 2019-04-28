@@ -21,7 +21,7 @@
       <el-table-column label="操作" width="100px" align="center">
         <template slot-scope="scope">
           <el-popover
-            v-if="checkPermission(['ADMIN','PICTURE_ALL','PICTURE_DELETE'])"
+            v-if="checkPermission(['ADMIN','checkPermissionPICTURE_ALL','PICTURE_DELETE'])"
             :ref="scope.row.id"
             placement="top"
             width="180">

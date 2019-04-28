@@ -15,7 +15,8 @@ module.exports = {
   // add your custom rules here
   //it is base on https://github.com/vuejs/eslint-config-vue
   rules: {
-
+    "no-console": "off", // 启用console控制台
+ 	"no-unused-vars": "off" // 启用console控制台
   }
 }
 

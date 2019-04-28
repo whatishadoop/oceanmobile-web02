@@ -35,11 +35,11 @@ export const constantRouterMap = [
     component: () => import('@/views/errorPage/401'),
     hidden: true
   },
-  {
-    path: '/AppDesigner',
-    component: () => import('@/views/appdesigner/AppDesigner'),
-    hidden: true
-  },
+  // {
+  //   path: '/AppDesigner',
+  //   component: () => import('@/views/appdesigner/AppDesigner'),
+  //   hidden: true
+  // },
   {
     path: '/redirect',
     component: Layout,

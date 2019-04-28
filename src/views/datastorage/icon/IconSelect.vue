@@ -1,7 +1,7 @@
 <template>
   <div class="icons-container">
     <p class="warn-content">
-      使用教程参考 <a href="https://panjiachen.github.io/vue-element-admin-site/guide/advanced/icon.html" target="_blank">Documentation</a>
+      使用教程参考 <a href="https://www.iconfont.cn/" target="_blank">IconFont</a>,将svg图片下载后放入src/icons/svg即可使用
     </p>
     <div class="icons-wrapper">
       <div v-for="item of iconsMap" :key="item" @click="handleClipboard(generateIconCode(item),$event)">
@@ -41,7 +41,7 @@ export default {
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style type="text/scss" rel="stylesheet/scss" lang="scss" scoped>
 .icons-container {
   margin: 10px 20px 0;
   overflow: hidden;

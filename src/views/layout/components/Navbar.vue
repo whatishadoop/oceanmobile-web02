@@ -9,6 +9,11 @@
           <Placard class="screenfull right-menu-item"/>
         </el-tooltip>
       </template>
+      <template>
+        <el-tooltip content="中英切换" effect="dark" placement="bottom">
+          <Language class="screenfull right-menu-item"/>
+        </el-tooltip>
+      </template>
       <template v-if="device!=='mobile'">
         <el-tooltip content="全屏" effect="dark" placement="bottom">
           <screenfull class="screenfull right-menu-item"/>
@@ -17,7 +22,7 @@
 
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="user.avatar" class="user-avatar">
+          <img :src="avatar" class="user-avatar">
           <i class="el-icon-caret-bottom"/>
         </div>
         <el-dropdown-menu slot="dropdown">
@@ -46,13 +51,20 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
 import Placard from '@/components/placard'
-
+import Language from '@/components/Language'
+import avatar from '@/assets/image/avatar.jpeg'
 export default {
+  data() {
+    return {
+      avatar: avatar
+    }
+  },
   components: {
     Breadcrumb,
     Hamburger,
     Placard,
-    Screenfull
+    Screenfull,
+    Language
   },
   computed: {
     ...mapGetters([
@@ -74,7 +86,7 @@ export default {
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style type="text/scss" type="text/scss" rel="stylesheet/scss" lang="scss" scoped>
   .navbar {
     height: 50px;
     line-height: 50px;

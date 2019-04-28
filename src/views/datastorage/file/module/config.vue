@@ -10,11 +10,11 @@
     </el-form-item>
     <el-form-item label="空间名称" prop="bucket">
       <el-input v-model="form.bucket" style="width: 35%;"/>
-      <span style="color: #C0C0C0;margin-left: 10px;">存储空间名称作为唯一的 Bucket 识别符</span>
+      <span style="color: #C0C0C0;margin-left: 10px;">存储空间名称作为唯一的识别符</span>
     </el-form-item>
     <el-form-item label="外链域名" prop="host">
       <el-input v-model="form.host" style="width: 35%;"/>
-      <span style="color: #C0C0C0;margin-left: 10px;">外链域名，可自定义，需在七牛云绑定</span>
+      <span style="color: #C0C0C0;margin-left: 10px;">外链域名，可自定义</span>
     </el-form-item>
     <el-form-item label="存储区域" prop="port">
       <el-select v-model="form.zone" placeholder="请选择存储区域">
@@ -24,12 +24,12 @@
           :label="item"
           :value="item"/>
       </el-select>
-      <span style="color: #C0C0C0;margin-left: 10px;">北美区域尚未支持自定义数据处理服务，一旦创建区域无法修改，请谨慎选择</span>
+      <span style="color: #C0C0C0;margin-left: 10px;">支持自定义数据分区服务，一旦创建区域无法修改，请谨慎选择</span>
     </el-form-item>
     <el-form-item label="空间类型" prop="host">
       <el-radio v-model="form.type" label="公开">公开</el-radio>
       <el-radio v-model="form.type" label="私有" >私有</el-radio>
-      <span style="color: #C0C0C0;margin-left: 10px;">公开和私有仅对 Bucket 的读文件生效，修改、删除、写入等对 Bucket 的操作均需要拥有者的授权才能进行操作</span>
+      <span style="color: #C0C0C0;margin-left: 10px;">公开和私有仅对存储空间的读文件生效，修改、删除、写入等对 Bucket 的操作均需要拥有者的授权才能进行操作</span>
     </el-form-item>
     <el-button :loading="loading" style="margin-left:5%;" size="medium" type="success" @click="doSubmit">保存配置</el-button>
   </el-form>

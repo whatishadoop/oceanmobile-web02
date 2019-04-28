@@ -218,7 +218,7 @@
                     <h3 class="popover-title">帮助</h3>
 
                     <div class="popover-content">
-                      xxxxx
+                      {{$t("message.title")}}
                     </div>
                   </div>
                 </div>
@@ -352,6 +352,7 @@
 
 <script type="text/ecmascript-6">
   import Vue from 'vue';
+  //import { Drawer } from 'iview';
   import {init, downloadLayoutSrc, clearDemo} from '../../utils/scripts';
   export default {
     data() {
@@ -488,7 +489,7 @@
     }
   };
 </script>
-<style rel="stylesheet/scss" lang="scss">
+<style type="text/scss" rel="stylesheet/scss" lang="scss">
   tabbar-wrapper {
     position: absolute;
     width: 100%;
