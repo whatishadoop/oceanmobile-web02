@@ -13,4 +13,4 @@ export default {
     nb: '新百伦',
     ln: '李宁'
   }
-};
+}

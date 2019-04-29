@@ -142,7 +142,7 @@ export default {
 }
 </script>
 
-<style type="text/scss" type="text/scss" rel="stylesheet/scss" lang="scss" scoped>
+<style type="text/scss" rel="stylesheet/scss" lang="scss" scoped>
 .tags-view-container {
   height: 34px;
   width: 100%;
@@ -210,7 +210,7 @@ export default {
 }
 </style>
 
-<style type="text/scss" type="text/scss" rel="stylesheet/scss" lang="scss">
+<style type="text/scss" rel="stylesheet/scss" lang="scss">
 // reset element css of el-icon-close
 .tags-view-wrapper {
   .tags-view-item {

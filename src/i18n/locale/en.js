@@ -12,4 +12,4 @@ export default {
     nb: 'New Banlance',
     ln: 'LI Ning'
   }
-};
+}

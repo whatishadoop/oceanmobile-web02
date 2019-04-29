@@ -14,28 +14,28 @@ import '@/icons' // icon
 import './permission' // permission control
 
 //  引入总线
-import Bus from './utils/bus';
+import Bus from './utils/bus'
 // 引入echarts
-import echarts from 'echarts';
+import echarts from 'echarts'
 // 引入uuid生成器
-import uuid from 'uuid-js';
+import uuid from 'uuid-js'
 // 引入自定义组件(插件)
 import webAppPlugin from './views/appmanage/components'
 // 引入国际化
-import i18n from './i18n';
+import i18n from './i18n'
 // 引入iview
-import './vendor/iview.js';
+import './vendor/iview.js'
 
-Vue.prototype.$uuid = uuid;
-Vue.prototype.$echarts = echarts;
-Vue.prototype.$bus = Bus;
+Vue.prototype.$uuid = uuid
+Vue.prototype.$echarts = echarts
+Vue.prototype.$bus = Bus
 
-Vue.use(webAppPlugin);
-Vue.use(mavonEditor);
+Vue.use(webAppPlugin)
+Vue.use(mavonEditor)
 Vue.use(ElementUI, {
-  i18n: (key,value) => i18n.t(key,value)
-});
-Vue.config.productionTip = false;
+  i18n: (key, value) => i18n.t(key, value)
+})
+Vue.config.productionTip = false
 
 new Vue({
   el: '#app',

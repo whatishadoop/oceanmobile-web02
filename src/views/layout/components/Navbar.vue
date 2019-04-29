@@ -54,17 +54,17 @@ import Placard from '@/components/placard'
 import Language from '@/components/Language'
 import avatar from '@/assets/image/avatar.jpeg'
 export default {
-  data() {
-    return {
-      avatar: avatar
-    }
-  },
   components: {
     Breadcrumb,
     Hamburger,
     Placard,
     Screenfull,
     Language
+  },
+  data() {
+    return {
+      avatar: avatar
+    }
   },
   computed: {
     ...mapGetters([
@@ -86,7 +86,7 @@ export default {
 }
 </script>
 
-<style type="text/scss" type="text/scss" rel="stylesheet/scss" lang="scss" scoped>
+<style type="text/scss" rel="stylesheet/scss" lang="scss" scoped>
   .navbar {
     height: 50px;
     line-height: 50px;

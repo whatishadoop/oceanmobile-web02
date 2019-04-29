@@ -8,7 +8,7 @@
       </app-link>
     </template>
 
-    <el-submenu v-else ref="submenu" :index="resolvePath(item.path)">
+    <el-submenu v-else ref="submenu" :index="resolvePath(item.path + this.$uuid.create().hex)">
       <template slot="title">
         <item v-if="item.meta" :icon="item.meta.icon" :title="item.meta.title" />
       </template>
@@ -90,6 +90,7 @@ export default {
       return false
     },
     resolvePath(routePath) {
+      console.log('==========' + routePath)
       if (this.isExternalLink(routePath)) {
         return routePath
       }

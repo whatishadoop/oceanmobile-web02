@@ -18,8 +18,8 @@
 export default {
   methods: {
     click() {
-      let locale = this.$i18n.locale;
-      locale === 'zh' ? this.$i18n.locale = 'en' : this.$i18n.locale = 'zh';
+      const locale = this.$i18n.locale
+      locale === 'zh' ? this.$i18n.locale = 'en' : this.$i18n.locale = 'zh'
     }
   }
 }
