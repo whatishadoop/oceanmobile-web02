@@ -5,7 +5,7 @@ import store from '../store'
 import { getToken } from '@/utils/auth'
 import Config from '@/config'
 
-// 创建axios实例
+// 创建axios实例,配置默认值
 const service = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
   timeout: Config.timeout // 请求超时时间
