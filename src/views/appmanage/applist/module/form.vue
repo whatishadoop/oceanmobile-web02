@@ -1,4 +1,5 @@
 <template>
+  <!--.sync 修饰符是一个语法糖-->
   <el-dialog :append-to-body="true" :visible.sync="dialog" :title="isAdd ? '新增岗位' : '编辑岗位'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
       <el-form-item label="名称" prop="name">
@@ -10,7 +11,7 @@
       <el-form-item v-if="form.pid !== 0" label="状态" prop="enabled">
         <el-radio v-for="item in dicts" :key="item.id" v-model="form.enabled" :label="item.value">{{ item.label }}</el-radio>
       </el-form-item>
-      <el-form-item label="所属部门">
+      <el-form-item label="所属业务">
         <treeselect v-model="deptId" :options="depts" style="width: 370px" placeholder="选择部门" />
       </el-form-item>
     </el-form>
