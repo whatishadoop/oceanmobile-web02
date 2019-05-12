@@ -4,7 +4,7 @@ export function login(username, password) {
   return request({
     url: 'auth/login',
     method: 'post',
-    data: {
+    data: {  // `data`是要作为请求主体发送的数据
       username,
       password
     }
