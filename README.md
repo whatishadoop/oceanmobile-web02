@@ -7,6 +7,8 @@
 3.vue2中的mixins功能使用，vue-mixins使用注意事项和高级用法
 4.setTimeout在vue中的正确使用，vue加载中loading提示信息
 5.vue axios全攻略
+6.vue.nextTick()方法的使用详解（简单明了）
+7.idea 添加 VUE 的语法支持和开发
 
 待解决问题
 1.APP编辑器样式调整问题

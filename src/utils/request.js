@@ -14,7 +14,7 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(
   config => {
-    //在发送请求之前做某事
+    /* 在发送请求之前做某事 */
     if (getToken()) {
       config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
     }
@@ -31,7 +31,7 @@ service.interceptors.request.use(
 // response 拦截器
 service.interceptors.response.use(
   response => {
-    //对响应数据做些事
+    /* 对响应数据做些事 */
     const code = response.status
     if (code < 200 || code > 300) {
       Notification.error({
