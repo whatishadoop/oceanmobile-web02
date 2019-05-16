@@ -31,10 +31,10 @@ export default {
         name: this.data.name,
         sort: this.data.sort,
         enabled: this.data.enabled.toString(),
-        createTime: this.data.createTime,
-        dept: { id: this.data.dept.id }
+        createTime: this.data.createTime
+        // dept: { id: this.data.dept.id }
       }
-      _this.deptId = this.data.dept.id
+      // _this.deptId = this.data.dept.id
       _this.dialog = true
     }
   }

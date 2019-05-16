@@ -9,6 +9,10 @@
 5.vue axios全攻略
 6.vue.nextTick()方法的使用详解（简单明了）
 7.idea 添加 VUE 的语法支持和开发
+8.webpack不同devtools打包对比,VUEJS文件扩展名esm.js和common.js是什么意思
+9.webpack的使用（5） ---- 热加载自动刷新
+10.vue-cli 配置webpack去除console输出日志
+11.vue-cli脚手架中webpack配置基础文件详解 http://www.cnblogs.com/zhangruiqi/p/9062005.html
 
 待解决问题
 1.APP编辑器样式调整问题

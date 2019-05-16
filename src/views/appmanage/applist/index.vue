@@ -6,7 +6,7 @@
       <el-table-column prop="name" label="名称"/>
       <el-table-column label="所属业务">
         <template slot-scope="scope">
-          <div>{{ scope.row.dept.name }}</div>
+          <div>{{ scope.row.busiName }}</div>
         </template>
       </el-table-column>
       <el-table-column prop="sort" label="排序">
@@ -28,9 +28,9 @@
       </el-table-column>
       <el-table-column label="操作" width="150px" align="center">
         <template slot-scope="scope">
-          <edit v-if="checkPermission(['ADMIN','USERJOB_ALL','USERJOB_EDIT'])" :dicts="dicts" :data="scope.row" :sup_this="sup_this"/>
+          <edit v-if="checkPermission(['ADMIN','APP_ALL','APP_EDIT'])" :dicts="dicts" :data="scope.row" :sup_this="sup_this"/>
           <el-popover
-            v-if="checkPermission(['ADMIN','USERJOB_ALL','USERJOB_DELETE'])"
+            v-if="checkPermission(['ADMIN','APP_ALL','APP_DELETE'])"
             :ref="scope.row.id"
             placement="top"
             width="180">
@@ -58,7 +58,7 @@
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/initData'
 import initDict from '@/mixins/initDict'
-import { del } from '@/api/job'
+import { del } from '@/api/app'
 import { parseTime } from '@/utils/index'
 import eHeader from './module/header'
 import edit from './module/edit'
@@ -67,7 +67,8 @@ export default {
   mixins: [initData, initDict],
   data() {
     return {
-      delLoading: false, sup_this: this
+      delLoading: false,
+      sup_this: this
     }
   },
   created() {
@@ -81,8 +82,8 @@ export default {
     parseTime,
     checkPermission,
     beforeInit() {
-      this.url = 'api/job'
-      const sort = 'sort,asc'
+      this.url = 'api/application'
+      const sort = 'id,asc'
       this.params = { page: this.page, size: this.size, sort: sort }
       const query = this.query
       const value = query.value

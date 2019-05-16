@@ -90,7 +90,7 @@ export default {
       return false
     },
     resolvePath(routePath) {
-      console.log('==========' + routePath)
+      // console.log('==========' + routePath)
       if (this.isExternalLink(routePath)) {
         return routePath
       }
