@@ -21,7 +21,7 @@
     <!-- 新增 -->
     <div style="display: inline-block;margin: 0px 2px;">
       <el-button
-        v-if="checkPermission(['ADMIN','USERJOB_ALL','USERJOB_CREATE'])"
+        v-if="checkPermission(['ADMIN','APP_ALL','APP_CREATE'])"
         class="filter-item"
         size="mini"
         type="primary"
@@ -46,6 +46,10 @@ export default {
     dicts: {
       type: Array,
       required: true
+    },
+    sup_this: {
+      type: Object,
+      required: true
     }
   },
   data() {
@@ -62,8 +66,8 @@ export default {
       this.$refs.form.dialog = true
     },
     toQuery() {
-      this.$parent.page = 0
-      this.$parent.init()
+      this.sup_this.page = 0
+      this.sup_this.init()
     }
   }
 }
