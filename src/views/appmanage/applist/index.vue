@@ -70,7 +70,7 @@ import initData from '@/mixins/initData'
 import initDict from '@/mixins/initDict'
 import { del } from '@/api/app'
 import { parseTime } from '@/utils/index'
-import { getBusi } from '@/api/busi'
+import { getBusi } from '@/api/appBusiSolution'
 import eHeader from './module/header'
 import edit from './module/edit'
 
@@ -100,7 +100,7 @@ export default {
     beforeInit() {
       this.url = 'api/application'
       const sort = 'id,asc'
-      this.params = { page: this.page, size: this.size, sort: sort }
+      this.params = { page: this.page, size: this.size, sort: sort, busiNameId: this.busiNameId }
       const query = this.query
       const value = query.value
       const enabled = query.enabled
@@ -130,12 +130,11 @@ export default {
       })
     },
     getBusiNames() {
-      alert(this.busiName)
       const sort = 'id,desc'
       const params = { sort: sort }
       if (this.busiName) { params['name'] = this.busiName }
       getBusi(params).then(res => {
-        this.depts = res.content
+        this.busiNames = res.content
       })
     },
     handleNodeClick(data) {
