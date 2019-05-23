@@ -1,7 +1,7 @@
 <template>
   <el-dialog :visible.sync="dialog" title="生成器配置" append-to-body width="550px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="78px">
-      <el-form-item label="作者名称" prop="author">
+      <el-form-item label="用户名称" prop="author">
         <el-input v-model="form.author" style="width: 420px;"/>
       </el-form-item>
       <el-form-item label="至于包下" prop="pack">
@@ -37,7 +37,7 @@ export default {
       form: { author: '', pack: '', path: '', moduleName: '', cover: 'false', apiPath: '' },
       rules: {
         author: [
-          { required: true, message: '作者不能为空', trigger: 'blur' }
+          { required: true, message: '用户不能为空', trigger: 'blur' }
         ],
         pack: [
           { required: true, message: '包路径不能为空', trigger: 'blur' }
