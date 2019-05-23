@@ -7,11 +7,12 @@ import 'mavon-editor/dist/css/index.css'
 import '@/styles/index.scss' // global css
 
 import App from './App'
-import router from './router'
+import router from './router/routers'
+import permission from './components/permission'
 import store from './store'
 
 import '@/icons' // icon
-import './permission' // permission control
+import './router/index' // permission control
 
 //  引入总线
 import Bus from './utils/bus'
@@ -31,6 +32,7 @@ Vue.prototype.$echarts = echarts
 Vue.prototype.$bus = Bus
 
 Vue.use(webAppPlugin)
+Vue.use(permission)
 Vue.use(mavonEditor)
 Vue.use(ElementUI, {
   i18n: (key, value) => i18n.t(key, value)

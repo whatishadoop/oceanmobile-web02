@@ -46,7 +46,7 @@ export default {
 
 <style type="text/scss" rel="stylesheet/scss" lang="scss" scoped>
 .dashboard-editor-container {
-  padding: 32px;
+  padding: 18px 22px 22px 22px;
   background-color: rgb(240, 242, 245);
   .chart-wrapper {
     background: #fff;
