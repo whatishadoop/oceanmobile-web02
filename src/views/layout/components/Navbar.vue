@@ -26,19 +26,21 @@
           <i class="el-icon-caret-bottom"/>
         </div>
         <el-dropdown-menu slot="dropdown">
-          <router-link to="/">
+          <span style="display:block;" @click="show = true">
             <el-dropdown-item>
-              首页
+              布局设置
             </el-dropdown-item>
-          </router-link>
+          </span>
           <router-link to="/user/center">
             <el-dropdown-item>
               个人中心
             </el-dropdown-item>
           </router-link>
-          <el-dropdown-item divided>
-            <span style="display:block;" @click="logout">退出登录</span>
-          </el-dropdown-item>
+          <span style="display:block;" @click="open">
+            <el-dropdown-item divided>
+              退出登录
+            </el-dropdown-item>
+          </span>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -63,6 +65,7 @@ export default {
   },
   data() {
     return {
+      dialogVisible: false,
       avatar: avatar
     }
   },
@@ -71,13 +74,34 @@ export default {
       'sidebar',
       'user',
       'device'
-    ])
+    ]),
+    show: {
+      get() {
+        return this.$store.state.settings.showRightPanel
+      },
+      set(val) {
+        this.$store.dispatch('changeSetting', {
+          key: 'showRightPanel',
+          value: val
+        })
+      }
+    }
   },
   methods: {
+    open() {
+      this.$confirm('确定注销并退出系统吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.logout()
+      })
+    },
     toggleSideBar() {
       this.$store.dispatch('ToggleSideBar')
     },
     logout() {
+      this.dialogVisible = false
       this.$store.dispatch('LogOut').then(() => {
         location.reload() // 为了重新实例化vue-router对象 避免bug
       })

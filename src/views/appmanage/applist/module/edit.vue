@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button size="mini" type="success" @click="to">编辑</el-button>
+    <el-button size="mini" type="primary" icon="el-icon-edit" @click="to"/>
     <eForm ref="form" :sup_this="sup_this" :is-add="false" :dicts="dicts"/>
   </div>
 </template>
@@ -25,16 +25,14 @@ export default {
   methods: {
     to() {
       const _this = this.$refs.form
-      _this.getDepts()
       _this.form = {
         id: this.data.id,
         name: this.data.name,
         sort: this.data.sort,
         enabled: this.data.enabled.toString(),
         createTime: this.data.createTime,
-        dept: { id: this.data.dept.id }
+        busiName: this.data.busiName
       }
-      _this.deptId = this.data.dept.id
       _this.dialog = true
     }
   }

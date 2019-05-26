@@ -36,7 +36,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',  // 设置支持运行时编译模板
+      'vue$': 'vue/dist/vue.esm.js',  // 设置支持运行时编译模板,去除移动设计端无法编译
       '@': resolve('src')
     }
   },

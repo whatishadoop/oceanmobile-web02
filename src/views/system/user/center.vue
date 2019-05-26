@@ -113,7 +113,7 @@ export default {
 }
 </script>
 
-<style type="text/scss" rel="stylesheet/scss" lang="scss">
+<style type="text/scss" rel="stylesheet/scss" lang="scss" scoped>
   .avatar-uploader-icon {
     font-size: 28px;
     width: 120px;

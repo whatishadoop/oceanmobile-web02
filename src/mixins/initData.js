@@ -1,6 +1,6 @@
 import { initData } from '@/api/data'
 
-//mixins就是定义一部分公共的方法或者计算属性,然后混入到各个组件中使用,方便管理与统一修改，包括合并成数组如created ready等只会被合并，以及重写覆盖如 methods, components 和 directives 将合并到同一个对象内
+/* mixins就是定义一部分公共的方法或者计算属性,然后混入到各个组件中使用,方便管理与统一修改，包括合并成数组如created ready等只会被合并，以及重写覆盖如 methods, components 和 directives 将合并到同一个对象内 */
 export default {
   data() {
     return {

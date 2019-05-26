@@ -85,5 +85,3 @@
 
  `slot`和`columns属性`可同时存在,columns里面的数据列会在slot自定义列的左边展示
 
- ## 其他
-  如果有其他的需求，请参考[el-table](http://element-cn.eleme.io/#/en-US/component/table)的api自行修改index.vue
