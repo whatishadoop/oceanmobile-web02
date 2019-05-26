@@ -31,13 +31,29 @@
 14.添加中间件性能监控菜单项 --解决
 15.添加消息中心菜单项 --解决
 16.添加流程管理菜单项 --解决
-<<<<<<< HEAD
-17.完成app应用管理功能开发 --优先级高
-18.制作app安装手机测试
-=======
 17.element 全局引入以及iview 使用局部加载方式，解决两者全局引入互相冲突问题，包大小问题 
 -- 解决
 18.element 以及iview 兼容国家化支持 --解决
 19.开发应用管理界面
 20.技术架构方案介绍
->>>>>>> origin/master
+
+21.响应式布局方案验证
+   1.手淘flexible.js适配
+   2.基于vue-cli配置手淘的lib-flexible + rem，实现移动端自适应
+   3.使用Flexible实现手淘H5页面的终端适配rem自适应布局-移动端自适应必备
+   4.vue-cli3.0 使用postcss-plugin-px2rem（推荐）和 postcss-pxtorem（postcss-px2rem）自动转换
+   px为rem 的配置方法
+   5.vue-cli2、vue-cli3的postcss-pxtorem插件 px转换rem
+   6.【前端库】淘宝适配 rem适配 lib-flexible.js 个人总结
+   7.手机淘宝——flexible.js 移动端自适应方案 
+   8.如何在Vue项目中使用vw实现移动端适配(转) https://www.jianshu.com/p/1f1b23f8348f
+   9.vue-cli脚手架中使用flexible淘宝适配方案 -- 重要
+   10.vue中使用px2remLoader，只转换了vue文件中的px，如何使外部css文件中px也转换成rem
+   11.vue-cli脚手架中使用flexible淘宝适配方案 --参看这个设置vue中css->rem转换
+   
+   mintui插件自带移动端适配，排除转换为rem方式
+   1.Vuejs 配合 mint-ui 开发移动端web
+   2.详解vue移动端项目的适配(以mint-ui为例)
+   3.vue中使用第三方UI库的移动端rem适配方案
+   
+22.布局样式调整

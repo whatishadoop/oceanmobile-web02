@@ -19,6 +19,7 @@ exports.cssLoaders = function(options) {
   const cssLoader = {
     loader: 'css-loader',
     options: {
+      // importLoaders: 2,
       sourceMap: options.sourceMap
     }
   }
@@ -30,10 +31,18 @@ exports.cssLoaders = function(options) {
     }
   }
 
+  // 支持vue中css转rem
+  const px2remLoader = {
+    loader: 'px2rem-loader',
+    options: {
+      remUnit: 75
+    }
+  }
+
   // generate loader string to be used with extract text plugin
   function generateLoaders(loader, loaderOptions) {
+    // const loaders = [cssLoader,px2remLoader]
     const loaders = []
-
     // Extract CSS when that option is specified
     // (which is the case during production build)
     if (options.extract) {
