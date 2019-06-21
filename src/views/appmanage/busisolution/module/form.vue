@@ -43,6 +43,11 @@ export default {
         enabled: '',
         name: '',
         pid: ''
+      },
+      rules: {
+        name: [
+          { required: true, message: '请输入名称', trigger: 'blur' }
+        ]
       }
     }
   },

@@ -27,7 +27,8 @@ exports.cssLoaders = function(options) {
   const postcssLoader = {
     loader: 'postcss-loader',
     options: {
-      sourceMap: options.sourceMap
+      sourceMap: options.sourceMap,
+      //importLoader: 5 // 在加载cssLoader之前加载的loader个数
     }
   }
 
@@ -35,13 +36,13 @@ exports.cssLoaders = function(options) {
   const px2remLoader = {
     loader: 'px2rem-loader',
     options: {
-      remUnit: 75
+      emUnit: 75 // 设计稿的1/10
     }
   }
 
   // generate loader string to be used with extract text plugin
   function generateLoaders(loader, loaderOptions) {
-    // const loaders = [cssLoader,px2remLoader]
+    // const loaders = options.usePostCSS ? [cssLoader, postcssLoader, px2remLoader] : [cssLoader, px2remLoader]
     const loaders = []
     // Extract CSS when that option is specified
     // (which is the case during production build)

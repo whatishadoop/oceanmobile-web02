@@ -26,6 +26,7 @@ import webAppPlugin from './views/appmanage/components'
 import i18n from './i18n'
 // 引入iview
 import './vendor/iview.js'
+import 'lib-flexible'
 
 Vue.prototype.$uuid = uuid
 Vue.prototype.$echarts = echarts

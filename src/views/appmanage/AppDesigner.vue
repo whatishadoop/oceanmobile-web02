@@ -308,38 +308,6 @@
     </div>
     <!--/.fluid-container-->
 
-    <div
-      id="downloadModal"
-      style="display: none;"
-      class="modal fade"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="downloadModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title">下载</h4>
-          </div>
-          <div class="modal-body">
-
-            <div id="download-logged" class="">
-              <div class="alert alert-info">已在下面生成干净的HTML, 可以复制粘贴代码到你的body内
-              </div>
-              <p>
-                <textarea/>
-              </p>
-            </div>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-        <!-- /.modal-content -->
-      </div>
-    </div>
     <!--设置:closable="false" 取消差按钮-->
     <Drawer
       :mask-style="maskstyle"
@@ -504,9 +472,9 @@ export default {
   }
 
   /*修改编辑器左侧样式*/
-  .sidebar-nav {
+ /* .sidebar-nav {
     width: 240px;
     height: 100%;
     top: 0px;
-  }
+  }*/
 </style>

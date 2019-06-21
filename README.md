@@ -41,7 +41,7 @@
    1.手淘flexible.js适配
    2.基于vue-cli配置手淘的lib-flexible + rem，实现移动端自适应
    3.使用Flexible实现手淘H5页面的终端适配rem自适应布局-移动端自适应必备
-   4.vue-cli3.0 使用postcss-plugin-px2rem（推荐）和 postcss-pxtorem（postcss-px2rem）自动转换
+   
    px为rem 的配置方法
    5.vue-cli2、vue-cli3的postcss-pxtorem插件 px转换rem
    6.【前端库】淘宝适配 rem适配 lib-flexible.js 个人总结
@@ -55,5 +55,13 @@
    1.Vuejs 配合 mint-ui 开发移动端web
    2.详解vue移动端项目的适配(以mint-ui为例)
    3.vue中使用第三方UI库的移动端rem适配方案
+   4.Vue CLI 3 自适应解决方案 postcss-px2rem和amfe-flexible
    
+   5.vue-cli3.0使用及配置（部分） https://blog.csdn.net/qq_36407748/article/details/80739787
+   6.vue-cli2、vue-cli3的postcss-pxtorem插件 px转换rem
+   
+   项目中使用
+    6.在项目中使用postcss-plugin-px2rem  --项目中使用
+    4.vue-cli3.0 使用postcss-plugin-px2rem（推荐）和 postcss-pxtorem（postcss-px2rem）自动转换
 22.布局样式调整
+
