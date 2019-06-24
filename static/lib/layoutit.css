@@ -73,7 +73,7 @@ body {
   position: relative;
   left: 374px;
   top: 10px;
-  width: 375px;
+  width: 377px;
   height: 520px;
   border: 1px solid #DDDDDD;
   box-sizing: content-box;
@@ -231,9 +231,7 @@ body {
 
 .demo .box .view {
   display: block;
-  padding-top: 30px;
-  margin-top: -39px;
-  margin-bottom: -24px;
+  padding-top: 0px;
 }
 
 .ui-draggable-dragging .view {
@@ -370,12 +368,20 @@ body {
 }
 
 .column {
-  background-color: #FFFFFF;
-  border: 0px solid #DDDDDD;
-  margin: 15px 0;
-  padding: 39px 0px 24px;
   position: relative;
+  padding: 39px 0px 24px;
+  margin: 0px 0px;
+  border: 1px solid #DDDDDD;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
 }
+
+/*.view .column:first-child {*/
+  /*margin-top: -39px;*/
+  /*!*padding: 0px 0px 24px;*!*/
+/*}*/
 
 /* preview */
 body.devpreview {
