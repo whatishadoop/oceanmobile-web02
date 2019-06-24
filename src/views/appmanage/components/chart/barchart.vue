@@ -1,6 +1,6 @@
 <template>
   <div :cache="cache" :cid="cid" ctype="barchart" obj="component">
-    <div :id="chartid" :style="{width: '200px', height: '200px',border: '1px dashed #F00'}"></div>
+    <div :id="chartid" :style="{width: '375px', height: '200px',border: '1px dashed #F00'}"></div>
     <div>组件ID: {{'C' + _uid}}</div>
     <button @click="test(id)">交互测试</button><br/>
     执行js: <textarea v-model="executejs"></textarea>
@@ -71,6 +71,7 @@ export default {
       // 绘制图表
       myChart.setOption({
         title: { text: '在Vue中使用echarts' },
+        borderWidth:0,
         tooltip: {},
         xAxis: {
           data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']

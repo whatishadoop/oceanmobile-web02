@@ -7,7 +7,7 @@
 3.vue2中的mixins功能使用，vue-mixins使用注意事项和高级用法
 4.setTimeout在vue中的正确使用，vue加载中loading提示信息
 5.vue axios全攻略
-6.vue.nextTick()方法的使用详解（简单明了）
+6.vue.nextTick()方法的使用详解（简单明了） 
 7.idea 添加 VUE 的语法支持和开发
 8.webpack不同devtools打包对比,VUEJS文件扩展名esm.js和common.js是什么意思
 9.webpack的使用（5） ---- 热加载自动刷新
@@ -37,7 +37,7 @@
 19.开发应用管理界面
 20.技术架构方案介绍
 
-21.响应式布局方案验证
+21.响应式布局方案验证  --采用postcss-px2rem和amfe-flexible解决
    1.手淘flexible.js适配
    2.基于vue-cli配置手淘的lib-flexible + rem，实现移动端自适应
    3.使用Flexible实现手淘H5页面的终端适配rem自适应布局-移动端自适应必备
@@ -63,5 +63,6 @@
    项目中使用
     6.在项目中使用postcss-plugin-px2rem  --项目中使用
     4.vue-cli3.0 使用postcss-plugin-px2rem（推荐）和 postcss-pxtorem（postcss-px2rem）自动转换
+    
 22.布局样式调整
 
