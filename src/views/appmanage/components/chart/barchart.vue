@@ -71,7 +71,7 @@ export default {
       // 绘制图表
       myChart.setOption({
         title: { text: '在Vue中使用echarts' },
-        borderWidth:0,
+        borderWidth: 0,
         tooltip: {},
         xAxis: {
           data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']

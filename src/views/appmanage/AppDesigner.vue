@@ -297,9 +297,23 @@
             </ul>
           </div>
         </div>
-        <!--/span-->
-        <div style="min-height: 754px;" class="demo ui-sortable"/>
-        <!--/span-->
+        <!--编辑器区域-->
+        <div style="min-height: 754px;" class="demo ui-sortable">
+           <v-header :seller="seller"></v-header>
+           <div class="tab border-1px">
+             <div class="tab-item">
+               <router-link to="">商品</router-link>
+             </div>
+             <div class="tab-item">
+               <router-link to="">评论</router-link>
+             </div>
+             <div class="tab-item">
+               <router-link to="">商家</router-link>
+             </div>
+           </div>
+           <div>content</div>
+        </div>
+        <!--编辑器区域-->
         <div id="download-layout">
           下载页面内容
         </div>
@@ -324,8 +338,12 @@
 <script type="text/ecmascript-6">
 import Vue from 'vue'
 import { init, downloadLayoutSrc, clearDemo } from '../../utils/scripts'
+import header from '@/views/appmanage/header/header'
 
 export default {
+  components: {
+    'v-header': header
+  },
   data() {
     // 普通属性国际化切换无效果
     return {
@@ -464,6 +482,28 @@ export default {
 }
 </script>
 <style type="text/scss" rel="stylesheet/scss" lang="scss">
+  @import "~@/styles/mixin.scss";
+
+  .tab {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    @include border-1px(rgba(7, 17, 27, 0.1));
+    .tab-item {
+      flex: 1;
+      text-align: center;
+      & > a {
+        display: block;
+        font-size: 14px;
+        color: rgb(77, 85, 93);
+        &.active {
+          color: rgb(240, 20, 20);
+        }
+      }
+    }
+  }
+
   tabbar-wrapper {
     position: absolute;
     width: 100%;

@@ -64,5 +64,6 @@
     6.在项目中使用postcss-plugin-px2rem  --项目中使用
     4.vue-cli3.0 使用postcss-plugin-px2rem（推荐）和 postcss-pxtorem（postcss-px2rem）自动转换
     
-22.布局样式调整
-
+22.布局样式调整 -- 简单调整了下，还需优化
+23.优化控件组装核心控件
+24.mockjs使用 --未解决

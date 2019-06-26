@@ -11,6 +11,7 @@ import router from './router/routers'
 import permission from './components/permission'
 import store from './store'
 
+// 引入所有icon svg资源，才能触发svg-sprite-loader 解析svg,在body页面插入所有symbol sprite全局内容，通过id进行调用
 import '@/icons' // icon
 import './router/index' // permission control
 
