@@ -66,6 +66,7 @@
     
     41.个人中心页面 https://www.jianshu.com/p/e0f55ef33294 --有价值参考
     Vue-router-3.0.1 使用router.addRoutes()设置动态路由，页面刷新后无效 https://forum.vuejs.org/t/vue-router-3-0-1-router-addroutes/33181  --有价值参考
+    https://forum.vuejs.org/ --vue论坛
 22.布局样式调整 -- 简单调整了下，还需优化
 23.优化控件组装核心控件
 24.mockjs使用 --未解决
