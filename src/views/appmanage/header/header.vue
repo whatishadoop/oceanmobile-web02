@@ -2,7 +2,7 @@
   <div class="header">
     <div class="content-wrapper">
       <div class="avatar">
-        <img width="64px" height="64px" src="">
+        <img width="64px" height="64px" src="http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg">
       </div>
       <div class="content">
         <div class="title">
@@ -18,7 +18,14 @@
         </div>
       </div>
     </div>
-    <div class="bulletin-wrapper">公告</div>
+    <div class="bulletin-wrapper">
+      <span class="bulletin-title"></span>
+      <span class="bulletin-text">粥品香坊其烹饪粥料的秘方源于中国千年古法，在融和现代制作工艺，由世界烹饪大师屈浩先生领衔研发。坚守纯天然、0添加的良心品质深得消费者青睐，发展至今成为粥类的引领品牌。是2008年奥运会和2013年园博会指定餐饮服务商。</span>
+      <i class="icon-keyboard_arrow_right"></i>
+    </div>
+    <div class="background">
+      <img src="http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg" width="100%" height="100%">
+    </div>
   </div>
 </template>
 
@@ -48,6 +55,8 @@
         margin-left: 16px;
         .title {
           margin: 2px 0 8px 0;
+          text-align: left;
+          color: #fff;
           .brand {
             display: inline-block;
             vertical-align: top;
@@ -102,6 +111,40 @@
           }
         }
       }
+    }
+    .bulletin-wrapper {
+      position: relative;
+      height: 28px;
+      line-height: 28px;
+      padding: 0 22px 0 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background: rgba(7, 17, 27, 0.2);
+      .bulletin-title {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 8px;
+        width: 22px;
+        height: 12px;
+        @include bg-image('bulletin');
+        background-size: 22px 12px;
+        background-repeat: no-repeat;
+      }
+      .bulletin-text {
+        vertical-align: top;
+        margin: 0 4px;
+        font-size: 10px;
+      }
+    }
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      filter: blur(10px);
     }
   }
 </style>

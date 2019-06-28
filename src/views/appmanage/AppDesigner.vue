@@ -302,7 +302,7 @@
            <v-header :seller="seller"></v-header>
            <div class="tab border-1px">
              <div class="tab-item">
-               <router-link to="">商品</router-link>
+               <router-link to="/appmanage/appdesigner/goods">商品</router-link>
              </div>
              <div class="tab-item">
                <router-link to="">评论</router-link>
@@ -310,8 +310,8 @@
              <div class="tab-item">
                <router-link to="">商家</router-link>
              </div>
+             <router-view></router-view>
            </div>
-           <div>content</div>
         </div>
         <!--编辑器区域-->
         <div id="download-layout">

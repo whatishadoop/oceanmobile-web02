@@ -5,7 +5,6 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '../views/layout/Layout'
-
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
 * alwaysShow: true               if set true, will always show the root menu, whatever its child routes length
@@ -28,6 +27,12 @@ export const constantRouterMap = [
   {
     path: '/404',
     component: () => import('@/views/errorPage/404'),
+    hidden: true
+  },
+  {
+    path: '/appmanage/appdesigner/goods',
+    redirect: 'noredirect',
+    component: () => import('@/views/appmanage/goods/goods'),
     hidden: true
   },
   {
