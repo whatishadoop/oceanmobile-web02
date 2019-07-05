@@ -30,12 +30,6 @@ export const constantRouterMap = [
     hidden: true
   },
   {
-    path: '/appmanage/appdesigner/goods',
-    redirect: 'noredirect',
-    component: () => import('@/views/appmanage/goods/goods'),
-    hidden: true
-  },
-  {
     path: '/401',
     component: () => import('@/views/errorPage/401'),
     hidden: true
