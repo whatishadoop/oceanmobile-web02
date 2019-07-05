@@ -83,7 +83,11 @@ export default {
       sup_this: this,
       busiName: '',
       busiNames: [],
-      busiNameId: null
+      busiNameId: null,
+      defaultProps: {
+        children: 'children',
+        label: 'name'
+      }
     }
   },
   created() {

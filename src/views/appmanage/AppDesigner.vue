@@ -299,19 +299,19 @@
         </div>
         <!--编辑器区域-->
         <div style="min-height: 754px;" class="demo ui-sortable">
-           <v-header :seller="seller"></v-header>
+           <v-header></v-header>
            <div class="tab border-1px">
              <div class="tab-item">
-               <router-link to="/appmanage/appdesigner/goods">商品</router-link>
+               <span @click="getComponentView('goods')">商品</span>
              </div>
              <div class="tab-item">
-               <router-link to="">评论</router-link>
+               <span @click="getComponentView('ratings')">评论</span>
              </div>
              <div class="tab-item">
-               <router-link to="">商家</router-link>
+               <span @click="getComponentView('seller')">商家</span>
              </div>
-             <router-view></router-view>
            </div>
+           <component :is="componentView"></component>
         </div>
         <!--编辑器区域-->
         <div id="download-layout">
@@ -339,10 +339,15 @@
 import Vue from 'vue'
 import { init, downloadLayoutSrc, clearDemo } from '../../utils/scripts'
 import header from '@/views/appmanage/header/header'
-
+import goods from '@/views/appmanage/goods/goods'
+import seller from '@/views/appmanage/seller/seller'
+import ratings from '@/views/appmanage/ratings/ratings'
 export default {
   components: {
-    'v-header': header
+    'v-header': header,
+    'goods': goods,
+    'seller': seller,
+    'ratings': ratings
   },
   data() {
     // 普通属性国际化切换无效果
@@ -351,6 +356,7 @@ export default {
       chart2: '<div v-world:wbs17022.hehe.haha></div>',
       currentView: '',
       openTheme: false,
+      componentView: 'goods',
       maskstyle: {
         background: 'transparent'
       },
@@ -477,6 +483,9 @@ export default {
         template: strs
       })
       new MyComponent().$mount('#mount-point')
+    },
+    getComponentView(name) {
+       this.componentView = name
     }
   }
 }
