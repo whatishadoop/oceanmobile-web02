@@ -57,42 +57,11 @@ export const loadMenus = (next, to) => {
     const asyncRouter = filterAsyncRouter(res)
     asyncRouter.push({ path: '*', redirect: '/404', hidden: true })
     store.dispatch('GenerateRoutes', asyncRouter).then(() => { // 存储路由
-      // 将手机界面子路由插入asyncRouter的appmanager中
-      const accessedRouters = asyncRouter.filter(router => {
-        if (router.path === '/appmanage') {
-          if (router.children && router.children.length > 0) {
-            router.children[0].children = appdesignerChildRouter
-          }
-        }
-        return true
-      })
-      router.addRoutes(accessedRouters) // 动态添加可访问路由表
+      router.addRoutes(asyncRouter) // 动态添加可访问路由表
       next({ ...to, replace: true })// hack方法 确保addRoutes已完成
     })
   })
 }
-
-// 设计小程序中手机界面子路由定义
-export const appdesignerChildRouter = [
-  {
-    path: 'goods',
-    component: () => import('@/views/appmanage/goods/goods'),
-    hidden: true,
-    name: '商品'
-  },
-  {
-    path: 'seller',
-    component: () => import('@/views/appmanage/seller/seller'),
-    hidden: true,
-    name: '商家'
-  },
-  {
-    path: 'ratings',
-    component: () => import('@/views/appmanage/ratings/ratings'),
-    hidden: true,
-    name: '评论'
-  }
-]
 
 router.afterEach(() => {
   NProgress.done() // finish progress bar
