@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="goods">
-      <div class="menu-wrapper" ref="menuWrapper">
+      <div ref="menuWrapper" class="menu-wrapper">
         <ul>
           <li class="menu-item current">
              <span class="text">
@@ -50,12 +50,12 @@
           </li>
         </ul>
       </div>
-      <div class="foods-wrapper" ref="foodsWrapper">
+      <div ref="foodsWrapper" class="foods-wrapper">
         <ul>
-          <li class="food-list">
+          <li v-for="(value,index) in [1,2,3,4,5]" :key="index" class="food-list">
             <h1 class="title">单人特色套餐</h1>
             <ul>
-              <li class="food-item">
+              <li v-for="(value,index) in [1,2,3,4,5]" :key="index" class="food-item">
                 <div>
                   <div class="icon">
                     <img width="57" height="57" src="http://fuss10.elemecdn.com/c/cd/c12745ed8a5171e13b427dbc39401jpeg.jpeg?imageView2/1/w/114/h/114"/>
@@ -65,41 +65,7 @@
                   <div class="name"></div>
                   <div class="desc"></div>
                   <div class="extra">
-                    <span class="count">月售1124份</span><span>好评率100%</span>
-                  </div>
-                  <div class="price">
-                    <span class="now">24</span><span class="old">28</span>
-                  </div>
-                </div>
-              </li>
-              <li class="food-item">
-                <div>
-                  <div class="icon">
-                    <img width="57" height="57" src="http://fuss10.elemecdn.com/c/cd/c12745ed8a5171e13b427dbc39401jpeg.jpeg?imageView2/1/w/114/h/114"/>
-                  </div>
-                </div>
-                <div class="content">
-                  <div class="name"></div>
-                  <div class="desc"></div>
-                  <div class="extra">
-                    <span class="count">月售1124份</span><span>好评率100%</span>
-                  </div>
-                  <div class="price">
-                    <span class="now">24</span><span class="old">28</span>
-                  </div>
-                </div>
-              </li>
-              <li class="food-item">
-                <div>
-                  <div class="icon">
-                    <img width="57" height="57" src="http://fuss10.elemecdn.com/c/cd/c12745ed8a5171e13b427dbc39401jpeg.jpeg?imageView2/1/w/114/h/114"/>
-                  </div>
-                </div>
-                <div class="content">
-                  <div class="name"></div>
-                  <div class="desc"></div>
-                  <div class="extra">
-                    <span class="count">月售1124份</span><span>好评率100%</span>
+                    <span class="count">月售{{1124 + value}}份</span><span>好评率100%</span>
                   </div>
                   <div class="price">
                     <span class="now">24</span><span class="old">28</span>
@@ -111,15 +77,20 @@
         </ul>
       </div>
     </div>
+    <v-shopcart></v-shopcart>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
-
+  import shopcart from '@/views/appmanage/shopcart/shopcart'
   export default {
+    components: {
+      'v-shopcart': shopcart
+    },
     data() {
-      return {}
+      return {
+      }
     },
     mounted() {
       this.$nextTick(() => {
@@ -130,6 +101,11 @@
       _initScroll() {
         this.meunScroll = new BScroll(this.$refs.menuWrapper, {
           click: true
+        })
+
+        this.goodsScroll = new BScroll(this.$refs.foodsWrapper, {
+          click: true,
+          propTypes: 3
         })
       }
     }
@@ -142,7 +118,7 @@
   .goods {
     position: absolute;
     top: 174px;
-    bottom: 46px;
+    bottom: 48px;
     width: 100%;
     display: flex;
     overflow: hidden;
