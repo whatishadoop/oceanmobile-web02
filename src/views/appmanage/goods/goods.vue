@@ -118,7 +118,7 @@
   .goods {
     position: absolute;
     top: 174px;
-    bottom: 48px;
+    bottom: 46px;
     width: 100%;
     display: flex;
     overflow: hidden;

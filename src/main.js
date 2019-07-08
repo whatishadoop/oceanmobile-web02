@@ -6,6 +6,8 @@ import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import '@/styles/index.scss' // global css
 
+import animated from 'animate.css'
+
 import App from './App'
 import router from './router/routers'
 import permission from './components/permission'
@@ -33,6 +35,7 @@ Vue.prototype.$uuid = uuid
 Vue.prototype.$echarts = echarts
 Vue.prototype.$bus = Bus
 
+Vue.use(animated)
 Vue.use(webAppPlugin)
 Vue.use(permission)
 Vue.use(mavonEditor)

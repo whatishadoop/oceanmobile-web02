@@ -26,12 +26,13 @@
 
 <style type="text/scss" rel="stylesheet/scss" lang="scss" scoped>
 .shopcart {
-  position: fixed;
-  bottom: 65px;
-  margin-bottom: 0;
-  width: 377px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   .content {
     display: flex;
+    height: 48px;
     background: #141d27;
     color: rgba(255, 255, 255, 0.4);
     .content-left {
