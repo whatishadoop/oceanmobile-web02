@@ -298,7 +298,7 @@
           </div>
         </div>
         <!--编辑器区域-->
-        <div style="min-height: 754px;" class="demo ui-sortable">
+        <div class="demo ui-sortable">
            <v-header></v-header>
            <div class="tab border-1px">
              <div class="tab-item">

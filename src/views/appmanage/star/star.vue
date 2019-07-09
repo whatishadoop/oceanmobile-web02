@@ -1,6 +1,6 @@
 <template>
-  <div class="star" :class="starType">
-    <span v-for="itemClass in itemClasses" :class="itemClass" class="star-item" :key="index"></span>
+  <div :class="starType" class="star">
+    <span v-for="(itemClass,index) in itemClasses" :class="itemClass" :key="index" class="star-item"></span>
   </div>
 </template>
 
@@ -13,10 +13,12 @@
   export default {
     props: {
       size: {
-        type: Number
+        type: Number,
+        default: 48
       },
       score: {
-        type: Number
+        type: Number,
+        default: 5
       }
     },
     computed: {
@@ -24,10 +26,10 @@
         return 'star-' + this.size
       },
       itemClasses() {
-        let result = []
-        let score = Math.floor(this.score * 2) / 2
-        let hasDecimal = score % 1 !== 0
-        let integer = Math.floor(score)
+        const result = []
+        const score = Math.floor(this.score * 2) / 2
+        const hasDecimal = score % 1 !== 0
+        const integer = Math.floor(score)
         for (let i = 0; i < integer; i++) {
           result.push(CLS_ON)
         }
