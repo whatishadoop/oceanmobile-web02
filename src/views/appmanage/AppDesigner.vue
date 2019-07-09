@@ -300,18 +300,7 @@
         <!--编辑器区域-->
         <div class="demo ui-sortable">
            <v-header></v-header>
-           <div class="tab border-1px">
-             <div class="tab-item">
-               <span @click="getComponentView('goods')">商品</span>
-             </div>
-             <div class="tab-item">
-               <span @click="getComponentView('ratings')">评论</span>
-             </div>
-             <div class="tab-item">
-               <span @click="getComponentView('seller')">商家</span>
-             </div>
-           </div>
-           <component :is="componentView"></component>
+           <tabs></tabs>
         </div>
         <!--编辑器区域-->
         <div id="download-layout">
@@ -342,12 +331,15 @@ import header from '@/views/appmanage/header/header'
 import goods from '@/views/appmanage/goods/goods'
 import seller from '@/views/appmanage/seller/seller'
 import ratings from '@/views/appmanage/ratings/ratings'
+import tabs from '@/views/appmanage/tabs/tabs'
+
 export default {
   components: {
     'v-header': header,
     'goods': goods,
     'seller': seller,
-    'ratings': ratings
+    'ratings': ratings,
+    'tabs': tabs
   },
   data() {
     // 普通属性国际化切换无效果
@@ -491,28 +483,6 @@ export default {
 }
 </script>
 <style type="text/scss" rel="stylesheet/scss" lang="scss">
-  @import "~@/styles/mixin.scss";
-
-  .tab {
-    display: flex;
-    width: 100%;
-    height: 40px;
-    line-height: 40px;
-    @include border-1px(rgba(7, 17, 27, 0.1));
-    .tab-item {
-      flex: 1;
-      text-align: center;
-      & > a {
-        display: block;
-        font-size: 14px;
-        color: rgb(77, 85, 93);
-        &.active {
-          color: rgb(240, 20, 20);
-        }
-      }
-    }
-  }
-
   tabbar-wrapper {
     position: absolute;
     width: 100%;
