@@ -327,8 +327,14 @@
         </div>
         <!--编辑器区域-->
         <div class="demo ui-sortable">
-           <m-hearder></m-hearder>
-           <m-tabs></m-tabs>
+          <div class="lyrow ui-draggable" style="display: block;">
+            <div class="row clearfix">
+              <div class="col-md-12 column ui-sortable"></div>
+            </div>
+          </div>
+          <!--底部选项卡-->
+          <m-shopcart></m-shopcart>
+          <!--底部选项卡-->
         </div>
         <!--编辑器区域-->
         <div id="download-layout">
@@ -353,146 +359,148 @@
 </template>
 
 <script type="text/ecmascript-6">
-import Vue from 'vue'
-import { init, downloadLayoutSrc, clearDemo } from '../../utils/scripts'
+  import Vue from 'vue'
+  import { init, downloadLayoutSrc, clearDemo } from '../../utils/scripts'
 
-export default {
-  data() {
-    // 普通属性国际化切换无效果
-    return {
-      chart: '<v-barchart></v-barchart>',
-      chart2: '<div v-world:wbs17022.hehe.haha></div>',
-      currentView: '',
-      openTheme: false,
-      maskstyle: {
-        background: 'transparent'
-      },
-      styles: {
-        height: 'calc(100% - 55px)',
-        overflow: 'auto',
-        paddingBottom: '53px',
-        position: 'static'
-      },
-      componentObj: {}
-    }
-  },
-  computed: {
-    // js中引用国际化放在计算属性中
-    nike() {
-      return this.$t('brands.nike')
-    }
-  },
-  mounted: function() {
-    // 弹出属性配置栏
-    this.$bus.$on('on-attraConfig', (componentObj, conifgComponentName) => {
-      this.currentView = ''
-      this.currentView = conifgComponentName
-      this.componentObj = componentObj
-      console.log(componentObj._uid)
-      this.openTheme = true
-    })
-    // 保存页面
-    this.$bus.$on('on-downloadPage', () => {
-      console.log('on-downloadPage')
-      downloadLayoutSrc()
-    })
-    // 加载页面
-    this.$bus.$on('on-loadPage', () => {
-      console.log('on-loadPage')
-      this.addPage()
-    })
-    // 清空编辑区域内容
-    this.$bus.$on('on-cleanContent', () => {
-      console.log('on-cleanContent')
-      clearDemo()
-    })
-    init(this)
-    const self = this
-    $('.demo, .demo .column').sortable({
-      connectWith: '.demo', // 只能放在.demo区域内，若布局嵌套设置为.column
-      opacity: 0.35,
-      handle: '.drag',
-      accept: '.demo'
-    })
-    $('.sidebar-nav .lyrow').draggable({
-      connectToSortable: '.demo',
-      helper: 'clone',
-      handle: '.drag',
-      drag: function(e, t) {
-        t.helper.width(400)
-      },
-      stop: function(event, ui) {
-        // 设置嵌套
-        $('.demo .column').sortable({
-          opacity: 0.35,
-          connectWith: '.column',
-          stop: function(event, ui) {
-            const curModuleObj = ui.item
-            const state = curModuleObj.attr('renderstate')
-            // 只处理新未进行渲染的新组件
-            if (state === 'C') {
-              const str = '' + self.$uuid.create()
-              const reg = new RegExp('-', 'g')
-              const newstr = str.replace(reg, '')
-              // 创建临时组件id
-              const tmpComponentId = 'C' + newstr
-              // 获取组件类型
-              const moduleType = curModuleObj.find('.cus_component').attr('type')
-              curModuleObj.find('.cus_component').attr('id', tmpComponentId)
-              self.$nextTick(function() {
-                const strs = `<${moduleType} ref="${tmpComponentId}"></${moduleType}>`
-                const MyComponent = Vue.extend({
-                  mounted: function() {
-                    if (this.$refs[tmpComponentId]) {
-                      // 向windows注册组件对象
-                      const componentUid = 'C' + this.$refs[tmpComponentId]._uid
-                      // window[cusComponentId] = this.$refs[cusComponentId]
-                      window[componentUid] = this.$refs[tmpComponentId]
-                    }
-                  },
-                  updated: function() {
-                    // 异步加载组件，初次触发updated事件
-                    if (this.$refs[tmpComponentId]) {
-                      const componentUid = 'C' + this.$refs[tmpComponentId]._uid
-                      // window[cusComponentId] = this.$refs[cusComponentId];
-                      window[componentUid] = this.$refs[tmpComponentId]
-                    }
-                  },
-                  template: strs
-                })
-                new MyComponent().$mount('#' + tmpComponentId)
-                // 挂载后渲染状态设置为O 旧组件状态
-                curModuleObj.attr('renderstate', 'O')
-              })
-            }
-          }
-        })
+  export default {
+    data() {
+      // 普通属性国际化切换无效果
+      return {
+        chart: '<v-barchart></v-barchart>',
+        chart2: '<div v-world:wbs17022.hehe.haha></div>',
+        currentView: '',
+        openTheme: false,
+        maskstyle: {
+          background: 'transparent'
+        },
+        styles: {
+          height: 'calc(100% - 55px)',
+          overflow: 'auto',
+          paddingBottom: '53px',
+          position: 'static'
+        },
+        componentObj: {}
       }
-    })
-    $('.sidebar-nav .box').draggable({
-      connectToSortable: '.column',
-      helper: 'clone',
-      handle: '.drag',
-      drag: function(e, t) {
-        t.helper.width(400)
+    },
+    computed: {
+      // js中引用国际化放在计算属性中
+      nike() {
+        return this.$t('brands.nike')
       }
-    })
-  },
-  methods: {
-    addPage() {
-      // 先清空再加载
-      $('.demo').children().remove()
-      $('.demo').html('<div id="mount-point"></div>')
-      // 模拟从后台读取页面
-      const strs = '<div renderstate="O" class="lyrow ui-draggable" style="display: block;"><a href="javascript:void(0)" class="remove label label-danger"><i class="glyphicon-remove glyphicon"></i>删除</a> <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i>拖动</span><div class="preview"><input value="12" type="text" class="form-control"></div><div class="view"><div class="row clearfix"><div class="col-md-12 column"><barchart></barchart></div></div></div></div>'
-      // 动态挂载页面
-      var MyComponent = Vue.extend({
-        template: strs
+    },
+    mounted: function() {
+      // 弹出属性配置栏
+      this.$bus.$on('on-attraConfig', (componentObj, conifgComponentName) => {
+        this.currentView = ''
+        this.currentView = conifgComponentName
+        this.componentObj = componentObj
+        console.log(componentObj._uid)
+        this.openTheme = true
       })
-      new MyComponent().$mount('#mount-point')
+      // 保存页面
+      this.$bus.$on('on-downloadPage', () => {
+        console.log('on-downloadPage')
+        downloadLayoutSrc()
+      })
+      // 加载页面
+      this.$bus.$on('on-loadPage', () => {
+        console.log('on-loadPage')
+        this.addPage()
+      })
+      // 清空编辑区域内容
+      this.$bus.$on('on-cleanContent', () => {
+        console.log('on-cleanContent')
+        clearDemo()
+      })
+      init(this)
+      const self = this
+      $('.demo, .demo .column').sortable({
+        connectWith: '.demo', // 只能放在.demo区域内，若布局嵌套设置为.column
+        opacity: 0.35,
+        handle: '.drag',
+        accept: '.demo'
+      })
+      $('.sidebar-nav .lyrow').draggable({
+        connectToSortable: '.demo',
+        helper: 'clone',
+        handle: '.drag',
+        drag: function(e, t) {
+          t.helper.width(400)
+        },
+        stop: function(event, ui) {
+          // 设置嵌套
+        }
+      })
+
+      // 绑定组件动态渲染
+      $('.demo .column').sortable({
+        opacity: 0.35,
+        connectWith: '.column',
+        stop: function(event, ui) {
+          const curModuleObj = ui.item
+          const state = curModuleObj.attr('renderstate')
+          // 只处理新未进行渲染的新组件
+          if (state === 'C') {
+            const str = '' + self.$uuid.create()
+            const reg = new RegExp('-', 'g')
+            const newstr = str.replace(reg, '')
+            // 创建临时组件id
+            const tmpComponentId = 'C' + newstr
+            // 获取组件类型
+            const moduleType = curModuleObj.find('.cus_component').attr('type')
+            curModuleObj.find('.cus_component').attr('id', tmpComponentId)
+            self.$nextTick(function() {
+              const strs = `<${moduleType} ref="${tmpComponentId}"></${moduleType}>`
+              const MyComponent = Vue.extend({
+                mounted: function() {
+                  if (this.$refs[tmpComponentId]) {
+                    // 向windows注册组件对象
+                    const componentUid = 'C' + this.$refs[tmpComponentId]._uid
+                    // window[cusComponentId] = this.$refs[cusComponentId]
+                    window[componentUid] = this.$refs[tmpComponentId]
+                  }
+                },
+                updated: function() {
+                  // 异步加载组件，初次触发updated事件
+                  if (this.$refs[tmpComponentId]) {
+                    const componentUid = 'C' + this.$refs[tmpComponentId]._uid
+                    // window[cusComponentId] = this.$refs[cusComponentId];
+                    window[componentUid] = this.$refs[tmpComponentId]
+                  }
+                },
+                template: strs
+              })
+              new MyComponent().$mount('#' + tmpComponentId)
+              // 挂载后渲染状态设置为O 旧组件状态
+              curModuleObj.attr('renderstate', 'O')
+            })
+          }
+        }
+      })
+      $('.sidebar-nav .box').draggable({
+        connectToSortable: '.column',
+        helper: 'clone',
+        handle: '.drag',
+        drag: function(e, t) {
+          t.helper.width(400)
+        }
+      })
+    },
+    methods: {
+      addPage() {
+        // 先清空再加载
+        $('.demo').children().remove()
+        $('.demo').html('<div id="mount-point"></div>')
+        // 模拟从后台读取页面
+        const strs = '<div renderstate="O" class="lyrow ui-draggable" style="display: block;"><a href="javascript:void(0)" class="remove label label-danger"><i class="glyphicon-remove glyphicon"></i>删除</a> <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i>拖动</span><div class="preview"><input value="12" type="text" class="form-control"></div><div class="view"><div class="row clearfix"><div class="col-md-12 column"><barchart></barchart></div></div></div></div>'
+        // 动态挂载页面
+        var MyComponent = Vue.extend({
+          template: strs
+        })
+        new MyComponent().$mount('#mount-point')
+      }
     }
   }
-}
 </script>
 <style type="text/scss" rel="stylesheet/scss" lang="scss">
   tabbar-wrapper {
@@ -503,9 +511,9 @@ export default {
   }
 
   /*修改编辑器左侧样式*/
- /* .sidebar-nav {
-    width: 240px;
-    height: 100%;
-    top: 0px;
-  }*/
+  /* .sidebar-nav {
+     width: 240px;
+     height: 100%;
+     top: 0px;
+   }*/
 </style>

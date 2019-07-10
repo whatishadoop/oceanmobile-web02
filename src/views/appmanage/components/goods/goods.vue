@@ -77,17 +77,12 @@
         </ul>
       </div>
     </div>
-    <v-shopcart></v-shopcart>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
-  import shopcart from '@/views/appmanage/components/shopcart/shopcart'
   export default {
-    components: {
-      'v-shopcart': shopcart
-    },
     data() {
       return {
       }

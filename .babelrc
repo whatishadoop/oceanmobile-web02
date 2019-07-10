@@ -8,6 +8,9 @@
     }],
     "stage-2"
   ],
+  "plugins": ["transform-runtime",["component",[
+    {"libraryName":"mint-ui","style":true}
+  ]]],
   "plugins":["transform-vue-jsx", "transform-runtime",["import", {
     "libraryName": "iview",
     "libraryDirectory": "src/components"

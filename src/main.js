@@ -29,6 +29,9 @@ import webAppPlugin from './views/appmanage/components'
 import i18n from './i18n'
 // 引入iview
 import './vendor/iview.js'
+
+// 引入mintui
+import './vendor/mintui.js'
 import 'lib-flexible'
 
 Vue.prototype.$uuid = uuid

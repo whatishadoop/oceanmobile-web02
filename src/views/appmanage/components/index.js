@@ -7,6 +7,7 @@ export default {
     Vue.component('m-goods', () => import('@/views/appmanage/components/goods/goods'))
     Vue.component('m-seller', () => import('@/views/appmanage/components/seller/seller'))
     Vue.component('m-ratings', () => import('@/views/appmanage/components/ratings/ratings'))
+    Vue.component('m-shopcart', () => import('@/views/appmanage/components/shopcart/shopcart'))
 
     // 全局异步注册配置组件
     Vue.component('barchartconfig', () => import('@/views/appmanage/components/chart/barchartconfig'))
