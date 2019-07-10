@@ -8,43 +8,8 @@
                <span class="icon"></span>精选热菜
              </span>
           </li>
-          <li class="menu-item">
-             <span class="text">
-               <span class="icon"></span>精选热菜
-             </span>
-          </li>
-          <li class="menu-item">
-             <span class="text">
-               <span class="icon"></span>精选热菜
-             </span>
-          </li>
-          <li class="menu-item">
-             <span class="text">
-               <span class="icon"></span>精选热菜
-             </span>
-          </li>
-          <li class="menu-item">
-             <span class="text">
-               <span class="icon"></span>精选热菜
-             </span>
-          </li>
-          <li class="menu-item">
-             <span class="text">
-               <span class="icon"></span>精选热菜
-             </span>
-          </li>
-          <li class="menu-item">
-             <span class="text">
-               <span class="icon"></span>精选热菜
-             </span>
-          </li>
-          <li class="menu-item">
-             <span class="text">
-               <span class="icon"></span>精选热菜
-             </span>
-          </li>
-          <li class="menu-item">
-             <span class="text">
+          <li v-for="(value,index) in [1,2,3,4,5,6,7,8,9,10]" :key="index" class="menu-item">
+            <span class="text">
                <span class="icon"></span>精选热菜
              </span>
           </li>
@@ -111,10 +76,11 @@
   @import "~@/styles/mixin.scss";
 
   .goods {
-    position: absolute;
-    top: 174px;
+    position: relative;
+    top: 0px;
     bottom: 46px;
     width: 100%;
+    height: 450px;
     display: flex;
     overflow: hidden;
     .menu-wrapper {
