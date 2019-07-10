@@ -207,12 +207,12 @@ var currentDocument = null;
 var timerSave = 2e3;
 var demoHtml = $(".demo").html();
 $(window).resize(function () {
-  $("body").css("min-height", $(window).height() - 90);
-  $(".demo").css("min-height", $(window).height() - 160)
+  //$("body").css("min-height", $(window).height() - 90);
+  //$(".demo").css("min-height", $(window).height() - 160)
 });
 $(document).ready(function () {
-  $("body").css("min-height", $(window).height() - 90);
-  $(".demo").css("min-height", $(window).height() - 160);
+  //$("body").css("min-height", $(window).height() - 90);
+  //$(".demo").css("min-height", $(window).height() - 160);
   $("[data-target=#downloadModal]").click(function (e) {
     e.preventDefault();
     downloadLayoutSrc()

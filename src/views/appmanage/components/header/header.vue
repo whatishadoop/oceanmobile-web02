@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :cache="cache" :cid="cid" ctype="m-header" obj="component">
     <div class="header">
       <div class="content-wrapper">
         <div class="avatar">
@@ -66,7 +66,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import star from '@/views/appmanage/star/star'
+  import star from '@/views/appmanage/components/star/star'
 
   export default {
     components: {
@@ -74,6 +74,8 @@
     },
     data() {
       return {
+        cid: 'C' + 0,
+        cache: '',
         detailShow: false
       }
     },

@@ -83,7 +83,7 @@
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
-  import shopcart from '@/views/appmanage/shopcart/shopcart'
+  import shopcart from '@/views/appmanage/components/shopcart/shopcart'
   export default {
     components: {
       'v-shopcart': shopcart

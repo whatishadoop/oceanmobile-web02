@@ -1,14 +1,14 @@
 <template>
-    <div>
+    <div :cache="cache" :cid="cid" ctype="m-tabs" obj="component">
       <div class="tab border-1px">
         <div class="tab-item">
-          <span @click="getComponentView('goods')">商品</span>
+          <span @click="getComponentView('m-goods')">商品</span>
         </div>
         <div class="tab-item">
-          <span @click="getComponentView('ratings')">评论</span>
+          <span @click="getComponentView('m-ratings')">评论</span>
         </div>
         <div class="tab-item">
-          <span @click="getComponentView('seller')">商家</span>
+          <span @click="getComponentView('m-seller')">商家</span>
         </div>
       </div>
       <component :is="componentView"></component>
@@ -16,21 +16,13 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import header from '@/views/appmanage/header/header'
-  import goods from '@/views/appmanage/goods/goods'
-  import seller from '@/views/appmanage/seller/seller'
-  import ratings from '@/views/appmanage/ratings/ratings'
   export default {
     name: 'App',
-    components: {
-      'v-header': header,
-      'goods': goods,
-      'seller': seller,
-      'ratings': ratings
-    },
     data() {
       return {
-        componentView: 'goods'
+        cid: 'C' + 0,
+        cache: '',
+        componentView: 'm-goods'
       }
     },
     methods: {

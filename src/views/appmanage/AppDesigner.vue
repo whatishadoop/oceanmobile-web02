@@ -293,14 +293,42 @@
                     <div class="cus_component" type="barchart">惺惺惜惺惺</div>
                   </div>
                 </div>
+                <div class="box box-element ui-draggable" renderstate="C">
+                  <a href="#close" class="remove label label-danger">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    删除
+                  </a>
+                  <span class="drag label label-default">
+								<i class="glyphicon glyphicon-move"></i>
+								拖动
+							</span>
+                  <div class="preview">头部组件</div>
+                  <div class="view">
+                    <div class="cus_component" type="m-hearder"></div>
+                  </div>
+                </div>
+                <div class="box box-element ui-draggable" renderstate="C">
+                  <a href="#close" class="remove label label-danger">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    删除
+                  </a>
+                  <span class="drag label label-default">
+								<i class="glyphicon glyphicon-move"></i>
+								拖动
+							</span>
+                  <div class="preview">切换组件</div>
+                  <div class="view">
+                    <div class="cus_component" type="m-tabs"></div>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
         </div>
         <!--编辑器区域-->
         <div class="demo ui-sortable">
-           <v-header></v-header>
-           <tabs></tabs>
+           <m-hearder></m-hearder>
+           <m-tabs></m-tabs>
         </div>
         <!--编辑器区域-->
         <div id="download-layout">
@@ -327,20 +355,8 @@
 <script type="text/ecmascript-6">
 import Vue from 'vue'
 import { init, downloadLayoutSrc, clearDemo } from '../../utils/scripts'
-import header from '@/views/appmanage/header/header'
-import goods from '@/views/appmanage/goods/goods'
-import seller from '@/views/appmanage/seller/seller'
-import ratings from '@/views/appmanage/ratings/ratings'
-import tabs from '@/views/appmanage/tabs/tabs'
 
 export default {
-  components: {
-    'v-header': header,
-    'goods': goods,
-    'seller': seller,
-    'ratings': ratings,
-    'tabs': tabs
-  },
   data() {
     // 普通属性国际化切换无效果
     return {
@@ -348,7 +364,6 @@ export default {
       chart2: '<div v-world:wbs17022.hehe.haha></div>',
       currentView: '',
       openTheme: false,
-      componentView: 'goods',
       maskstyle: {
         background: 'transparent'
       },
@@ -475,9 +490,6 @@ export default {
         template: strs
       })
       new MyComponent().$mount('#mount-point')
-    },
-    getComponentView(name) {
-       this.componentView = name
     }
   }
 }
