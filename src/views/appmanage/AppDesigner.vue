@@ -334,6 +334,7 @@
           </div>
           <!--底部选项卡-->
           <m-shopcart></m-shopcart>
+          <m-detailshow></m-detailshow>
           <!--底部选项卡-->
         </div>
         <!--编辑器区域-->
