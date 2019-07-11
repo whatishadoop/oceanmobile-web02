@@ -349,10 +349,9 @@
     <!--/.fluid-container-->
     <div class="btn-wrapper">
       <el-button-group>
-        <el-button type="info" plain icon="el-icon-check" @click="saveLayoutHtml"></el-button>
-        <el-button type="info" plain icon="el-icon-search" @click="previewLayoutHtml($event)"></el-button>
+        <el-button type="info" plain icon="el-icon-check" @click="saveLayoutHtml($event)"></el-button>
+        <el-button type="info" plain icon="el-icon-edit" @click="addLayoutHtml($event)"></el-button>
         <el-button type="info" plain icon="el-icon-delete" @click="clearLayoutPage($event)"></el-button>
-        <el-button type="info" plain icon="el-icon-plus" @click="addLayoutHtml($event)"></el-button>
       </el-button-group>
     </div>
     <!--设置:closable="false" 取消差按钮-->
@@ -425,7 +424,7 @@
       })
     },
     methods: {
-      saveLayoutHtml() {
+      saveLayoutHtml(e) {
         const formatSrc = $('.mcontent').html()
         let previewContent = ''
         $('#download-layout').html(formatSrc).find('[obj=component]').each(function() {
@@ -437,26 +436,28 @@
           if (!ctype) {
             ctype = ''
           }
-          const replaceStr = '<' + ctype + ' cache="' + cache + '">' + '</' + ctype + '>'
+          const replaceStr = '<' + ctype + ' cache=\'' + cache + '\'>' + '</' + ctype + '>'
           $(this).replaceWith(replaceStr).html()
           previewContent += replaceStr
         })
         // 动态内容区
         this.pageContent1 = $('#download-layout').html()
-        alert($('#download-layout').html())
         // 预览区内容
         this.pageContent2 = previewContent
-        alert(previewContent)
+        this.previewLayoutHtml(e)
+        this.$message('保存成功')
       },
       clearLayoutPage(e) {
         e.preventDefault()
         $('.mcontent').empty()
+        this.$message('清除成功')
       },
       previewLayoutHtml(e) {
         // 先清空再加载
         this.clearLayoutPage(e)
-        // const pageContent2 = '<m-header></m-header><m-tabs></m-tabs>'
         this._getDynamicContent(this.pageContent2)
+        this._sortRender()
+        this.$message('预览模式')
       },
       addLayoutHtml(e) {
         // 先清空再加载
@@ -540,6 +541,7 @@
           template: htmlContent
         })
         new PageComponent().$mount('#mount-point')
+        this.$message('编辑模式')
       }
     }
   }
