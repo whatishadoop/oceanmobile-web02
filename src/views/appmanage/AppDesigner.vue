@@ -329,19 +329,19 @@
         <div class="demo ui-sortable">
           <div class="lyrow ui-draggable" style="display: block;">
             <div class="row clearfix">
-              <div class="col-md-12 column ui-sortable mcontent">
+              <div id="mount-point" class="col-md-12 column ui-sortable mcontent">
                 <!--动态内容-->
               </div>
             </div>
           </div>
           <!--底部选项卡-->
           <m-shopcart></m-shopcart>
+          <!--右侧弹出框-->
           <m-detailshow></m-detailshow>
-          <!--底部选项卡-->
         </div>
-        <!--编辑器区域-->
+
         <div id="download-layout">
-          下载页面内容
+          保存页面内容临时存放区
         </div>
       </div>
       <!--/row-->
@@ -350,9 +350,9 @@
     <div class="btn-wrapper">
       <el-button-group>
         <el-button type="info" plain icon="el-icon-check" @click="saveLayoutHtml"></el-button>
-        <el-button type="info" plain icon="el-icon-search"></el-button>
+        <el-button type="info" plain icon="el-icon-search" @click="previewLayoutHtml($event)"></el-button>
         <el-button type="info" plain icon="el-icon-delete" @click="clearLayoutPage($event)"></el-button>
-        <el-button type="info" plain icon="el-icon-plus" @click="addPage"></el-button>
+        <el-button type="info" plain icon="el-icon-plus" @click="addLayoutHtml($event)"></el-button>
       </el-button-group>
     </div>
     <!--设置:closable="false" 取消差按钮-->
@@ -370,14 +370,12 @@
 
 <script type="text/ecmascript-6">
   import Vue from 'vue'
-  import { init, downloadLayoutSrc, clearDemo } from '../../utils/scripts'
+  import { init, downloadLayoutSrc } from '../../utils/scripts'
 
   export default {
     data() {
       // 普通属性国际化切换无效果
       return {
-        chart: '<v-barchart></v-barchart>',
-        chart2: '<div v-world:wbs17022.hehe.haha></div>',
         currentView: '',
         openTheme: false,
         maskstyle: {
@@ -389,7 +387,9 @@
           paddingBottom: '53px',
           position: 'static'
         },
-        componentObj: {}
+        componentObj: {},
+        pageContent1: '',
+        pageContent2: ''
       }
     },
     computed: {
@@ -412,81 +412,9 @@
         console.log('on-downloadPage')
         downloadLayoutSrc()
       })
-      // 加载页面
-      this.$bus.$on('on-loadPage', () => {
-        console.log('on-loadPage')
-        this.addPage()
-      })
-      // 清空编辑区域内容
-      this.$bus.$on('on-cleanContent', () => {
-        console.log('on-cleanContent')
-        clearDemo()
-      })
       init(this)
-      const self = this
-      $('.demo, .demo .column').sortable({
-        connectWith: '.demo', // 只能放在.demo区域内，若布局嵌套设置为.column
-        opacity: 0.35,
-        handle: '.drag',
-        accept: '.demo'
-      })
-      $('.sidebar-nav .lyrow').draggable({
-        connectToSortable: '.demo',
-        helper: 'clone',
-        handle: '.drag',
-        drag: function(e, t) {
-          t.helper.width(400)
-        },
-        stop: function(event, ui) {
-          // 设置嵌套
-        }
-      })
-
       // 绑定组件动态渲染
-      $('.demo .column').sortable({
-        opacity: 0.35,
-        connectWith: '.column',
-        stop: function(event, ui) {
-          const curModuleObj = ui.item
-          const state = curModuleObj.attr('renderstate')
-          // 只处理新未进行渲染的新组件
-          if (state === 'C') {
-            const str = '' + self.$uuid.create()
-            const reg = new RegExp('-', 'g')
-            const newstr = str.replace(reg, '')
-            // 创建临时组件id
-            const tmpComponentId = 'C' + newstr
-            // 获取组件类型
-            const moduleType = curModuleObj.find('.cus_component').attr('type')
-            curModuleObj.find('.cus_component').attr('id', tmpComponentId)
-            self.$nextTick(function() {
-              const strs = `<${moduleType} ref="${tmpComponentId}"></${moduleType}>`
-              const MyComponent = Vue.extend({
-                mounted: function() {
-                  if (this.$refs[tmpComponentId]) {
-                    // 向windows注册组件对象
-                    const componentUid = 'C' + this.$refs[tmpComponentId]._uid
-                    // window[cusComponentId] = this.$refs[cusComponentId]
-                    window[componentUid] = this.$refs[tmpComponentId]
-                  }
-                },
-                updated: function() {
-                  // 异步加载组件，初次触发updated事件
-                  if (this.$refs[tmpComponentId]) {
-                    const componentUid = 'C' + this.$refs[tmpComponentId]._uid
-                    // window[cusComponentId] = this.$refs[cusComponentId];
-                    window[componentUid] = this.$refs[tmpComponentId]
-                  }
-                },
-                template: strs
-              })
-              new MyComponent().$mount('#' + tmpComponentId)
-              // 挂载后渲染状态设置为O 旧组件状态
-              curModuleObj.attr('renderstate', 'O')
-            })
-          }
-        }
-      })
+      this._sortRender()
       $('.sidebar-nav .box').draggable({
         connectToSortable: '.column',
         helper: 'clone',
@@ -497,8 +425,67 @@
       })
     },
     methods: {
+      saveLayoutHtml() {
+        const formatSrc = $('.mcontent').html()
+        let previewContent = ''
+        $('#download-layout').html(formatSrc).find('[obj=component]').each(function() {
+          let cache = $(this).attr('cache')
+          if (!cache) {
+            cache = ''
+          }
+          let ctype = $(this).attr('ctype')
+          if (!ctype) {
+            ctype = ''
+          }
+          const replaceStr = '<' + ctype + ' cache="' + cache + '">' + '</' + ctype + '>'
+          $(this).replaceWith(replaceStr).html()
+          previewContent += replaceStr
+        })
+        // 动态内容区
+        this.pageContent1 = $('#download-layout').html()
+        alert($('#download-layout').html())
+        // 预览区内容
+        this.pageContent2 = previewContent
+        alert(previewContent)
+      },
+      clearLayoutPage(e) {
+        e.preventDefault()
+        $('.mcontent').empty()
+      },
+      previewLayoutHtml(e) {
+        // 先清空再加载
+        this.clearLayoutPage(e)
+        // const pageContent2 = '<m-header></m-header><m-tabs></m-tabs>'
+        this._getDynamicContent(this.pageContent2)
+      },
+      addLayoutHtml(e) {
+        // 先清空再加载
+        this.clearLayoutPage(e)
+        // 从后台读取静态编辑内容
+        // const pageContent1 = '<div renderstate="O" class="box box-element ui-draggable" style="display: block;"><a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i>删除</a><span class="drag label label-default"><i class="glyphicon glyphicon-move"></i>拖动</span><div class="preview">头部组件</div><div class="view"><m-header></m-header></div></div><div renderstate="O" class="box box-element ui-draggable" style="display: block;"><a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i>删除</a> <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i>拖动</span><div class="preview">切换组件</div><div class="view"><m-tabs></m-tabs></div></div>'
+        this._getDynamicContent(this.pageContent1)
+        this._sortRender()
+      },
+      // 渲染组件动态绑定
       _sortRender() {
         const self = this
+        $('.demo, .demo .column').sortable({
+          connectWith: '.demo', // 只能放在.demo区域内，若布局嵌套设置为.column
+          opacity: 0.35,
+          handle: '.drag',
+          accept: '.demo'
+        })
+        $('.sidebar-nav .lyrow').draggable({
+          connectToSortable: '.demo',
+          helper: 'clone',
+          handle: '.drag',
+          drag: function(e, t) {
+            t.helper.width(400)
+          },
+          stop: function(event, ui) {
+            // 设置嵌套
+          }
+        })
         $('.demo .column').sortable({
           opacity: 0.35,
           connectWith: '.column',
@@ -544,45 +531,15 @@
           }
         })
       },
-      saveLayoutHtml() {
-        alert('保存网页')
-      },
-      clearLayoutPage(e) {
-        e.preventDefault()
-        $('.mcontent').empty()
-      },
-      addPage() {
-        // 先清空再加载
-        /* $('.demo').children().remove() */
-        $('.mcontent').html('<div id="mount-point"></div>')
-        // 模拟从后台读取页面
-        const strs = '<div class="lyrow ui-draggable" style="display: block;"><div class="row clearfix"><div class="col-md-12 column ui-sortable"><div renderstate="O" class="box box-element ui-draggable" style="display: block;"><a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i>删除</a><span class="drag label label-default"><i class="glyphicon glyphicon-move"></i>拖动</span><div class="preview">头部组件</div><div class="view"><m-header></m-header></div></div><div renderstate="O" class="box box-element ui-draggable" style="display: block;"><a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i>删除</a> <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i>拖动</span><div class="preview">切换组件</div><div class="view"><m-tabs></m-tabs></div></div></div></div></div>'
-        // 动态挂载页面
-        var MyComponent = Vue.extend({
-          template: strs
+      // 组装动态内容区域内容
+      _getDynamicContent(pageContent) {
+        // 利用模板方法组装成动态编辑内容
+        const htmlContent = `<div id="mount-point" class="lyrow ui-draggable" style="display: block;"><div class="row clearfix"><div class="col-md-12 column ui-sortable mcontent">${pageContent}</div></div></div>`
+        // 动态加载页面到手机区域
+        var PageComponent = Vue.extend({
+          template: htmlContent
         })
-        new MyComponent().$mount('#mount-point')
-        this.$nextTick(function() {
-          $('.demo, .demo .column').sortable({
-            connectWith: '.demo', // 只能放在.demo区域内，若布局嵌套设置为.column
-            opacity: 0.35,
-            handle: '.drag',
-            accept: '.demo'
-          })
-          $('.sidebar-nav .lyrow').draggable({
-            connectToSortable: '.demo',
-            helper: 'clone',
-            handle: '.drag',
-            drag: function(e, t) {
-              t.helper.width(400)
-            },
-            stop: function(event, ui) {
-              // 设置嵌套
-
-            }
-          })
-        })
-        this._sortRender()
+        new PageComponent().$mount('#mount-point')
       }
     }
   }

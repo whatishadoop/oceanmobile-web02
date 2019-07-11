@@ -201,8 +201,11 @@ function downloadLayoutSrc() {
     }
     var tmp = $(this).replaceWith("<" + ctype + " cache=" + cache + ">" + "</" + ctype + ">")
   })
-  $("#downloadModal textarea").empty()
-  $("#downloadModal textarea").val($("#download-layout").html())
+  console.log($("#download-layout"))
+  return
+  //$("#downloadModal textarea").empty()
+
+  //$("#downloadModal textarea").val($("#download-layout").html())
 
   // 保存到#save-layout 节点上，给pc使用
   //  var componentObj2 = $("#save-layout").html($(".demo").html())
