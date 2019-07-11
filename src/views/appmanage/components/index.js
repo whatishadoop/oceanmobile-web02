@@ -2,7 +2,7 @@ export default {
   install: function(Vue) {
     // 全局异步注册组件
     Vue.component('barchart', () => import('@/views/appmanage/components/chart/barchart'))
-    Vue.component('m-hearder', () => import('@/views/appmanage/components/header/header'))
+    Vue.component('m-header', () => import('@/views/appmanage/components/header/header'))
     Vue.component('m-tabs', () => import('@/views/appmanage/components/tabs/tabs'))
     Vue.component('m-goods', () => import('@/views/appmanage/components/goods/goods'))
     Vue.component('m-seller', () => import('@/views/appmanage/components/seller/seller'))

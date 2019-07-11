@@ -194,6 +194,8 @@ function downloadLayoutSrc() {
     var tmp = $(this).replaceWith("<" + ctype + " cache=" + cache + ">" + "</" + ctype + ">");
   });
   $("#downloadModal textarea").empty();
+  alert($("#download-layout").html());
+  return;
   $("#downloadModal textarea").val($("#download-layout").html());
 
   // 保存到#save-layout 节点上，给pc使用

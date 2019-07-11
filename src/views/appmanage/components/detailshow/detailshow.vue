@@ -6,7 +6,7 @@
             <div class="detail-main">
               <h1 class="name">粥品香坊(大运村)</h1>
               <div class="star-wrapper">
-                <star :size="48" :score="2"></star>
+                X X X X X
               </div>
               <div class="title">
                 <div class="line"></div>
@@ -41,7 +41,7 @@
     export default {
       data() {
         return {
-          detailShow: true
+          detailShow: false
         }
       },
       mounted() {

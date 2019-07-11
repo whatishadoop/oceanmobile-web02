@@ -304,7 +304,7 @@
 							</span>
                   <div class="preview">头部组件</div>
                   <div class="view">
-                    <div class="cus_component" type="m-hearder"></div>
+                    <div class="cus_component" type="m-header"></div>
                   </div>
                 </div>
                 <div class="box box-element ui-draggable" renderstate="C">
@@ -329,7 +329,9 @@
         <div class="demo ui-sortable">
           <div class="lyrow ui-draggable" style="display: block;">
             <div class="row clearfix">
-              <div class="col-md-12 column ui-sortable"></div>
+              <div class="col-md-12 column ui-sortable mcontent">
+                <!--动态内容-->
+              </div>
             </div>
           </div>
           <!--底部选项卡-->
@@ -345,7 +347,14 @@
       <!--/row-->
     </div>
     <!--/.fluid-container-->
-
+    <div class="btn-wrapper">
+      <el-button-group>
+        <el-button type="info" plain icon="el-icon-check" @click="saveLayoutHtml"></el-button>
+        <el-button type="info" plain icon="el-icon-search"></el-button>
+        <el-button type="info" plain icon="el-icon-delete" @click="clearLayoutPage($event)"></el-button>
+        <el-button type="info" plain icon="el-icon-plus" @click="addPage"></el-button>
+      </el-button-group>
+    </div>
     <!--设置:closable="false" 取消差按钮-->
     <Drawer
       :mask-style="maskstyle"
@@ -488,27 +497,102 @@
       })
     },
     methods: {
+      _sortRender() {
+        const self = this
+        $('.demo .column').sortable({
+          opacity: 0.35,
+          connectWith: '.column',
+          stop: function(event, ui) {
+            const curModuleObj = ui.item
+            const state = curModuleObj.attr('renderstate')
+            // 只处理新未进行渲染的新组件
+            if (state === 'C') {
+              const str = '' + self.$uuid.create()
+              const reg = new RegExp('-', 'g')
+              const newstr = str.replace(reg, '')
+              // 创建临时组件id
+              const tmpComponentId = 'C' + newstr
+              // 获取组件类型
+              const moduleType = curModuleObj.find('.cus_component').attr('type')
+              curModuleObj.find('.cus_component').attr('id', tmpComponentId)
+              self.$nextTick(function() {
+                const strs = `<${moduleType} ref="${tmpComponentId}"></${moduleType}>`
+                const MyComponent = Vue.extend({
+                  mounted: function() {
+                    if (this.$refs[tmpComponentId]) {
+                      // 向windows注册组件对象
+                      const componentUid = 'C' + this.$refs[tmpComponentId]._uid
+                      // window[cusComponentId] = this.$refs[cusComponentId]
+                      window[componentUid] = this.$refs[tmpComponentId]
+                    }
+                  },
+                  updated: function() {
+                    // 异步加载组件，初次触发updated事件
+                    if (this.$refs[tmpComponentId]) {
+                      const componentUid = 'C' + this.$refs[tmpComponentId]._uid
+                      // window[cusComponentId] = this.$refs[cusComponentId];
+                      window[componentUid] = this.$refs[tmpComponentId]
+                    }
+                  },
+                  template: strs
+                })
+                new MyComponent().$mount('#' + tmpComponentId)
+                // 挂载后渲染状态设置为O 旧组件状态
+                curModuleObj.attr('renderstate', 'O')
+              })
+            }
+          }
+        })
+      },
+      saveLayoutHtml() {
+        alert('保存网页')
+      },
+      clearLayoutPage(e) {
+        e.preventDefault()
+        $('.mcontent').empty()
+      },
       addPage() {
         // 先清空再加载
-        $('.demo').children().remove()
-        $('.demo').html('<div id="mount-point"></div>')
+        /* $('.demo').children().remove() */
+        $('.mcontent').html('<div id="mount-point"></div>')
         // 模拟从后台读取页面
-        const strs = '<div renderstate="O" class="lyrow ui-draggable" style="display: block;"><a href="javascript:void(0)" class="remove label label-danger"><i class="glyphicon-remove glyphicon"></i>删除</a> <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i>拖动</span><div class="preview"><input value="12" type="text" class="form-control"></div><div class="view"><div class="row clearfix"><div class="col-md-12 column"><barchart></barchart></div></div></div></div>'
+        const strs = '<div class="lyrow ui-draggable" style="display: block;"><div class="row clearfix"><div class="col-md-12 column ui-sortable"><div renderstate="O" class="box box-element ui-draggable" style="display: block;"><a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i>删除</a><span class="drag label label-default"><i class="glyphicon glyphicon-move"></i>拖动</span><div class="preview">头部组件</div><div class="view"><m-header></m-header></div></div><div renderstate="O" class="box box-element ui-draggable" style="display: block;"><a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i>删除</a> <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i>拖动</span><div class="preview">切换组件</div><div class="view"><m-tabs></m-tabs></div></div></div></div></div>'
         // 动态挂载页面
         var MyComponent = Vue.extend({
           template: strs
         })
         new MyComponent().$mount('#mount-point')
+        this.$nextTick(function() {
+          $('.demo, .demo .column').sortable({
+            connectWith: '.demo', // 只能放在.demo区域内，若布局嵌套设置为.column
+            opacity: 0.35,
+            handle: '.drag',
+            accept: '.demo'
+          })
+          $('.sidebar-nav .lyrow').draggable({
+            connectToSortable: '.demo',
+            helper: 'clone',
+            handle: '.drag',
+            drag: function(e, t) {
+              t.helper.width(400)
+            },
+            stop: function(event, ui) {
+              // 设置嵌套
+
+            }
+          })
+        })
+        this._sortRender()
       }
     }
   }
 </script>
 <style type="text/scss" rel="stylesheet/scss" lang="scss">
-  tabbar-wrapper {
+  .btn-wrapper {
     position: absolute;
+    top: 12px;
+    left: 781px;
     width: 100%;
-    bottom: 0;
-    left: 0;
   }
 
   /*修改编辑器左侧样式*/

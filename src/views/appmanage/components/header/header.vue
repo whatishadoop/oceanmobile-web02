@@ -46,7 +46,7 @@
     },
     methods: {
       showDetail() {
-        this.$bus.$emit('on-showDetail',true)
+        this.$bus.$emit('on-showDetail', true)
       }
     }
   }
