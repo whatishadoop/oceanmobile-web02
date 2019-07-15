@@ -74,7 +74,11 @@
 
 <style type="text/scss" rel="stylesheet/scss" lang="scss" scoped>
   @import "~@/styles/mixin.scss";
-
+  ul {
+    li {
+      list-style: none;
+    }
+  }
   .goods {
     position: relative;
     top: 0px;
@@ -93,6 +97,7 @@
         width: 80px;
         padding: 0 12px;
         line-height: 14px;
+        list-style: none;
         &.current {
           position: relative;
           z-index: 10;
@@ -137,6 +142,7 @@
         display: flex;
         margin: 18px;
         padding-bottom: 18px;
+        list-style: none;
         @include border-1px(rgba(7, 17, 27, 0.1));
         &:last-child {
           @include border-none();
