@@ -9,6 +9,7 @@ export default {
     Vue.component('m-ratings', () => import('@/views/appmanage/components/ratings/ratings'))
     Vue.component('m-shopcart', () => import('@/views/appmanage/components/shopcart/shopcart'))
     Vue.component('m-detailshow', () => import('@/views/appmanage/components/detailshow/detailshow'))
+    Vue.component('m-drawers', () => import('@/views/appmanage/components/drawers/drawers'))
 
     // 全局异步注册配置组件
     Vue.component('barchartconfig', () => import('@/views/appmanage/components/chart/barchartconfig'))

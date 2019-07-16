@@ -337,7 +337,7 @@
           <!--底部选项卡-->
           <m-shopcart></m-shopcart>
           <!--右侧弹出框-->
-          <m-detailshow></m-detailshow>
+          <m-drawers></m-drawers>
         </div>
 
         <div id="download-layout">
