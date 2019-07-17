@@ -1,4 +1,4 @@
-body {
+/*body {
   padding-top: 50px;
   padding-bottom: 40px;
   margin-left: 200px;
@@ -7,7 +7,7 @@ body {
   -ms-transition: margin 500ms ease;
   -o-transition: margin 500ms ease;
   transition: margin 500ms ease;
-}
+}*/
 
 .navbar-layoutit .btn-donate {
   padding: 0 0 0 10px;

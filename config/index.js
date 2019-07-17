@@ -8,7 +8,7 @@ module.exports = {
   dev: {
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: '/',  // tomcat部署设置为./
     proxyTable: {},
 
     // Various Dev Server settings
@@ -16,12 +16,13 @@ module.exports = {
     port: 8013, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
-    notifyOnErrors: true,
+    notifyOnErrors: false,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
+
     // Use Eslint Loader?
     // If true, your code will be linted during bundling and
     // linting errors and warnings will be shown in the console.
-    useEslint: true,  // 是否启动eslint检查
+    useEslint: true,
     // If true, eslint errors and warnings will also be shown in the error overlay
     // in the browser.
     showEslintErrorsInOverlay: false,
@@ -29,8 +30,9 @@ module.exports = {
     /**
      * Source Maps
      */
+
     // https://webpack.js.org/configuration/devtool/#development
-    devtool: 'source-map',
+    devtool: 'cheap-source-map',
 
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
@@ -41,8 +43,8 @@ module.exports = {
   },
 
   build: {
-    // Template for index.vue
-    index: path.resolve(__dirname, '../dist/index.vue'),
+    // Template for index.html
+    index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),

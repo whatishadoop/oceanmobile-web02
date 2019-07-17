@@ -442,8 +442,10 @@
         })
         // 动态内容区
         this.pageContent1 = $('#download-layout').html()
+        alert(this.pageContent1)
         // 预览区内容
         this.pageContent2 = previewContent
+        alert(this.pageContent2)
         this.previewLayoutHtml(e)
         this.$message('保存成功')
       },
@@ -463,7 +465,6 @@
         // 先清空再加载
         this.clearLayoutPage(e)
         // 从后台读取静态编辑内容
-        // const pageContent1 = '<div renderstate="O" class="box box-element ui-draggable" style="display: block;"><a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i>删除</a><span class="drag label label-default"><i class="glyphicon glyphicon-move"></i>拖动</span><div class="preview">头部组件</div><div class="view"><m-header></m-header></div></div><div renderstate="O" class="box box-element ui-draggable" style="display: block;"><a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i>删除</a> <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i>拖动</span><div class="preview">切换组件</div><div class="view"><m-tabs></m-tabs></div></div>'
         this._getDynamicContent(this.pageContent1)
         this._sortRender()
       },
