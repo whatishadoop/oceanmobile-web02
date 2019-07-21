@@ -32,7 +32,7 @@ import './vendor/iview.js'
 
 // 引入mintui
 import './vendor/mintui.js'
-import 'lib-flexible'
+// import 'lib-flexible'
 
 Vue.prototype.$uuid = uuid
 Vue.prototype.$echarts = echarts

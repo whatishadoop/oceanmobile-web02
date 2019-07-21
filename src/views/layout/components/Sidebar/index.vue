@@ -11,8 +11,10 @@
       active-text-color="#409EFF"
     >
       <Logo :is-collapse="isCollapse"/>
-      <sidebar-item v-for="route in permission_routers" :key="route.path" :item="route" :base-path="route.path"/>
+      <sidebar-item v-for="route in permission_routers" :key="route.path" :item="route" :base-path="route.path">
+      </sidebar-item>
     </el-menu>
+    <h1 v-for="route in permission_routers" :key="route.path" :item="route" :base-path="route.path">{{route.path}}</h1>
   </el-scrollbar>
 </template>
 

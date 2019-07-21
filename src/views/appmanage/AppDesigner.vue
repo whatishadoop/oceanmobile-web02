@@ -436,7 +436,7 @@
           if (!ctype) {
             ctype = ''
           }
-          const replaceStr = '<' + ctype + ' cache=\'' + cache + '\'>' + '</' + ctype + '>'
+          const replaceStr = '<' + ctype + ' cache=\"' + cache + '\"/>'
           $(this).replaceWith(replaceStr).html()
           previewContent += replaceStr
         })
