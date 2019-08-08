@@ -447,7 +447,7 @@
           if (!ctype) {
             ctype = ''
           }
-          const replaceStr = '<' + ctype + ' cache=\'' + cache + '\'>' + '</' + ctype + '>'
+          const replaceStr = '<' + ctype + ' cache=\"' + cache + '\"/>'
           $(this).replaceWith(replaceStr).html()
           previewContent += replaceStr
         })
@@ -509,6 +509,9 @@
         }).catch(err => {
           console.log(err.response.date.message)
         })
+        // 从后台读取静态编辑内容
+        // this._getDynamicContent(this.pageContent1)
+        // this._sortRender()
       },
       // 渲染组件动态绑定
       _sortRender() {
