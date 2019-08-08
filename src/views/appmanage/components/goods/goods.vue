@@ -93,7 +93,7 @@
       background: #f3f5f7;
       .menu-item {
         display: table;
-        height: 54px;
+        height: 60px;
         width: 80px;
         padding: 0 12px;
         line-height: 14px;

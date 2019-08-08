@@ -351,6 +351,8 @@
       <el-button-group>
         <el-button type="info" plain icon="el-icon-check" @click="saveLayoutHtml($event)"></el-button>
         <el-button type="info" plain icon="el-icon-edit" @click="addLayoutHtml($event)"></el-button>
+        <el-button type="info" plain icon="el-icon-search" @click="addLayoutHtml($event)"></el-button>
+        <el-button type="info" plain icon="el-icon-circle-plus-outline" @click="addLayoutHtml($event)"></el-button>
         <el-button type="info" plain icon="el-icon-delete" @click="clearLayoutPage($event)"></el-button>
       </el-button-group>
     </div>
@@ -369,7 +371,8 @@
 
 <script type="text/ecmascript-6">
   import Vue from 'vue'
-  import { init, downloadLayoutSrc } from '../../utils/scripts'
+  import { init } from '../../utils/scripts'
+  import { add, get } from '@/api/appPage'
 
   export default {
     data() {
@@ -388,7 +391,19 @@
         },
         componentObj: {},
         pageContent1: '',
-        pageContent2: ''
+        pageContent2: '',
+        apppage: {
+          id: null,
+          name: '',
+          code: '',
+          content: '',
+          contentParse: '',
+          config: '',
+          sort: 100,
+          enabled: true,
+          remark: '',
+          creator: 'admin'
+        }
       }
     },
     computed: {
@@ -406,11 +421,7 @@
         console.log(componentObj._uid)
         this.openTheme = true
       })
-      // 保存页面
-      this.$bus.$on('on-downloadPage', () => {
-        console.log('on-downloadPage')
-        downloadLayoutSrc()
-      })
+
       init(this)
       // 绑定组件动态渲染
       this._sortRender()
@@ -442,15 +453,38 @@
         })
         // 动态内容区
         this.pageContent1 = $('#download-layout').html()
+        alert(this.pageContent1)
         // 预览区内容
         this.pageContent2 = previewContent
+        alert(this.pageContent2)
         this.previewLayoutHtml(e)
-        this.$message('保存成功')
+        // 向后台发送保存后编辑状态下内容以及预览模式内容
+        this.apppage.name = '应用页面1'
+        this.apppage.code = 'apppage1'
+        this.apppage.content = this.pageContent1
+        this.apppage.contentParse = this.pageContent2
+        this.apppage.config = 'xxxx'
+        this.apppage.enabled = 'true'
+        this.apppage.sort = 100
+        this.apppage.remark = '备注内容xxxxx'
+        add(this.apppage).then(res => {
+          this.$notify({
+            title: '保存成功',
+            type: 'success',
+            duration: 2500
+          })
+        }).catch(err => {
+          console.log(err.response.data.message)
+        })
       },
       clearLayoutPage(e) {
         e.preventDefault()
         $('.mcontent').empty()
-        this.$message('清除成功')
+        this.$notify({
+          title: '清除成功',
+          type: 'success',
+          duration: 1500
+        })
       },
       previewLayoutHtml(e) {
         // 先清空再加载
@@ -462,10 +496,19 @@
       addLayoutHtml(e) {
         // 先清空再加载
         this.clearLayoutPage(e)
-        // 从后台读取静态编辑内容
-        // const pageContent1 = '<div renderstate="O" class="box box-element ui-draggable" style="display: block;"><a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i>删除</a><span class="drag label label-default"><i class="glyphicon glyphicon-move"></i>拖动</span><div class="preview">头部组件</div><div class="view"><m-header></m-header></div></div><div renderstate="O" class="box box-element ui-draggable" style="display: block;"><a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i>删除</a> <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i>拖动</span><div class="preview">切换组件</div><div class="view"><m-tabs></m-tabs></div></div>'
-        this._getDynamicContent(this.pageContent1)
-        this._sortRender()
+        // 从后台读取预览区域内容
+        this.apppage = {
+          id: 1,
+          page: 0,
+          size: 9999
+        }
+        get(this.apppage).then(res => {
+          console.log('=============返回预览内容==============')
+          this._getDynamicContent(res.content[0].content)
+          this._sortRender()
+        }).catch(err => {
+          console.log(err.response.date.message)
+        })
       },
       // 渲染组件动态绑定
       _sortRender() {
@@ -535,7 +578,7 @@
       // 组装动态内容区域内容
       _getDynamicContent(pageContent) {
         // 利用模板方法组装成动态编辑内容
-        const htmlContent = `<div id="mount-point" class="lyrow ui-draggable" style="display: block;"><div class="row clearfix"><div class="col-md-12 column ui-sortable mcontent">${pageContent}</div></div></div>`
+        const htmlContent = `<div class="lyrow ui-draggable" style="display: block;"><div class="row clearfix"><div class="col-md-12 column ui-sortable mcontent">${pageContent}</div></div></div>`
         // 动态加载页面到手机区域
         var PageComponent = Vue.extend({
           template: htmlContent

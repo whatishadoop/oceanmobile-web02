@@ -47,8 +47,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: utils.assetsPath('css/[name].[contenthash:8].css'),
       chunkFilename: utils.assetsPath('css/[name].[contenthash:8].css')
     }),
-    // generate dist index.vue with correct asset hash for caching.
-    // you can customize output by editing /index.vue
+    // generate dist index.html with correct asset hash for caching.
+    // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: config.build.index,
