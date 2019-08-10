@@ -351,8 +351,6 @@
       <el-button-group>
         <el-button type="info" plain icon="el-icon-check" @click="saveLayoutHtml($event)"></el-button>
         <el-button type="info" plain icon="el-icon-edit" @click="addLayoutHtml($event)"></el-button>
-        <el-button type="info" plain icon="el-icon-search" @click="addLayoutHtml($event)"></el-button>
-        <el-button type="info" plain icon="el-icon-circle-plus-outline" @click="addLayoutHtml($event)"></el-button>
         <el-button type="info" plain icon="el-icon-delete" @click="clearLayoutPage($event)"></el-button>
       </el-button-group>
     </div>
@@ -507,9 +505,9 @@
           this._getDynamicContent(res.content[0].content)
           this._sortRender()
         }).catch(err => {
-          console.log(err.response.date.message)
+          console.log(err.response)
         })
-        // 从后台读取静态编辑内容
+        // 测试内容
         // this._getDynamicContent(this.pageContent1)
         // this._sortRender()
       },

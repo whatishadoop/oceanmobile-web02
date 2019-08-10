@@ -24,6 +24,16 @@ export const constantRouterMap = [
     component: () => import('@/views/login/index'),
     hidden: true
   },
+  { path: '/mlogin',
+    meta: { title: '登录', noCache: true },
+    component: () => import('@/views/login/mindex'),
+    hidden: true
+  },
+  { path: '/mindex',
+    meta: { title: '移动端首页', noCache: true },
+    component: () => import('@/views/layout/MAppMain'),
+    hidden: true
+  },
   {
     path: '/404',
     component: () => import('@/views/errorPage/404'),

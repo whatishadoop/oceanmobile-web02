@@ -79,5 +79,6 @@
 30.用router-view 替换component,这样才可以使用keep-alive
 31.组件cache通用初始化设计改造
 32.路由改造支持web-app, 页面动态从后台动态加载预览
+33.request.js 重新登陆axios请求接口过滤器需要改造
 
 

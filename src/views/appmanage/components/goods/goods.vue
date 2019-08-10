@@ -77,6 +77,7 @@
   ul {
     li {
       list-style: none;
+      margin: 0;
     }
   }
   .goods {
@@ -137,6 +138,7 @@
         font-size: 12px;
         color: rgb(147, 153, 159);
         background: #f3f5f7;
+        margin: 0;
       }
       .food-item {
         display: flex;
