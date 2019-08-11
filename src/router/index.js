@@ -20,7 +20,7 @@ router.beforeEach((to, from, next) => {
   if (to.path === '/mlogin' || to.path === '/mindex') {
     // 移动端登陆逻辑配置
     if (getToken()) {
-      // 已登录且要跳转的页面是登录页
+      // 已登录且要跳转的页面是登录页2
       if (to.path === '/mlogin') {
         next({ path: '/mindex' })
         NProgress.done() // if current page is dashboard will not trigger	afterEach hook, so manually handle it

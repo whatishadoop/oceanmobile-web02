@@ -25,7 +25,7 @@ export const constantRouterMap = [
     hidden: true
   },
   { path: '/mlogin',
-    meta: { title: '登录', noCache: true },
+    meta: { title: '登录2', noCache: true },
     component: () => import('@/views/login/mindex'),
     hidden: true
   },
